@@ -8,6 +8,7 @@
 
 #import "GameControlLayer.h"
 #import "Runner.h"
+#import "Building.h"
 
 @implementation GameControlLayer
 
@@ -72,6 +73,9 @@
 		
 		[sceneSpriteBatchNode addChild:runner
 									 z:100];
+		
+		Building *building = [[Building alloc] init];
+		
 		[self scheduleUpdate];
 	}
 	return self;

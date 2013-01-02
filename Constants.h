@@ -31,6 +31,7 @@ typedef enum {
 typedef enum {
     kObjectTypeNone,
 	kRunnerType,
+	kBuildingType,
     kMissileType,
     kBoxType,
 } GameObjectType;

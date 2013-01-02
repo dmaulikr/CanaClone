@@ -120,7 +120,7 @@
 		velocity.y = 0;
 	}
 	
-	CCLOG(@"vel:%f", velocity.y);
+	//CCLOG(@"vel:%f", velocity.y);
 	
 	if ([self numberOfRunningActions] == 0) {
 		if (self.position.y == minPos)
