@@ -79,15 +79,44 @@
 		[self initRunner];
 		
 		
+		
+		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
-		CCSpriteBatchNode *blah = [CCSpriteBatchNode batchNodeWithFile:@"giant_leg_bottom.png"];
-		CCTexture2D *spriteTexture_ = [blah texture];
-		[self addChild:blah];
+		CCSpriteBatchNode *wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png"];
+		[self addChild:wallBatch z:0];
 		
-		CCSprite *sprite = [CCSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0,0,128,128)];
-		[blah addChild:sprite z:300];
 		
-		sprite.position = ccp( 200, 200);
+		int maxRow = 20;
+		for (int row = 0; row < maxRow; row++) {
+			for (int col = 0; col < 10; col++) {
+				CCSprite *sprite;
+				if (col == 0) {
+					if (row == 0) {
+						sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-left.png"];
+					}
+					else if (row == maxRow-1) {
+						sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-right.png"];
+					}
+					else {
+						sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-middle.png"];
+					}
+				}
+				else {
+					if (row == 0) {
+						sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-left.png"];
+					}
+					else if (row == maxRow-1) {
+						sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-right.png"];
+					}
+					else {
+						sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-middle.png"];
+					}
+				}
+				
+				[wallBatch addChild:sprite z:20];
+				sprite.position = ccp( 200+ row * sprite.boundingBox.size.width, 300 - col * sprite.boundingBox.size.height);
+			}
+		}
 		
 		//Building *building = [[Building alloc] init];
 		

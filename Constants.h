@@ -21,21 +21,6 @@ typedef enum {
 } SceneTypes;
 
 typedef enum {
-    kLinkTypeBookSite,
-    kLinkTypeDeveloperSiteRod,
-    kLinkTypeDeveloperSiteRay,
-    kLinkTypeArtistSite,
-    kLinkTypeMusicianSite
-} LinkTypes;
-
-typedef enum {
-    kObjectTypeNone,
-	kRunnerType,
-    kMissileType,
-    kBoxType,
-} GameObjectType;
-
-typedef enum {
     kStateRunning,
     kStateJumping,
     kStateFalling,
