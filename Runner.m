@@ -111,6 +111,7 @@
 	
 	
 	if (self.position.y < minPos) { //if below platform level
+		[self stopAllActions];
 		
 		[self setPosition:ccp(self.position.x, minPos)];
 		
@@ -148,26 +149,79 @@
     [self setRollingAnim:[self loadPlistForAnimationWithName:@"rollingAnim"
 												andClassName:NSStringFromClass([self class])]];
 }
+
+-(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName
+								andClassName:(NSString*)className
+{
+	
+    CCAnimation *animationToReturn = nil;
+	
+    NSString *fullFileName = [NSString stringWithFormat:@"%@.plist",className];
+    NSString *plistPath;
+	
+    // 1: Get the Path to the plist file
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+															  NSUserDomainMask,
+															  YES)
+						  objectAtIndex:0];
+	plistPath = [rootPath stringByAppendingPathComponent:fullFileName];
+	if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+		plistPath = [[NSBundle mainBundle] pathForResource:className
+													ofType:@"plist"];
+	}
+	
+	// 2: Read in the plist file
+	NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+	
+	// 3: If the plistDictionary was null, the file was not found.
+	if (plistDictionary == nil) {
+		CCLOG(@"Error reading plist: %@.plist", className);
+		return nil; // No Plist Dictionary or file found
+	}
+	
+	// 4: Get just the mini-dictionary for this animation
+	NSDictionary *animationSettings = [plistDictionary objectForKey:animationName];
+	if (animationSettings == nil) {
+		CCLOG(@"Could not locate AnimationWithName:%@",animationName);
+		return nil;
+	}
+	
+	// 5: Get the delay value for the animation
+	float animationDelay = [[animationSettings objectForKey:@"delay"] floatValue];
+	animationToReturn = [CCAnimation animation];
+	[animationToReturn setDelayPerUnit:animationDelay];
+	
+	// 6: Add the frames to the animation
+	NSString *animationFramePrefix = [animationSettings objectForKey:@"filenamePrefix"];
+	NSString *animationFrames = [animationSettings objectForKey:@"animationFrames"];
+	NSArray *animationFrameNumbers = [animationFrames componentsSeparatedByString:@","];
+	
+	//[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Runner_Atlas.plist"];
+	//CCSpriteBatchNode *animBatch = [CCSpriteBatchNode batchNodeWithFile:@"Runner_Atlas.png"];
+	
+	for (NSString *frameNumber in animationFrameNumbers) {
+		NSString *frameName = [NSString stringWithFormat:@"%@%@.png",
+							   animationFramePrefix,
+							   frameNumber];
+		[animationToReturn addSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
+										   spriteFrameByName:frameName]];
+	}
+	return animationToReturn;
+}
+
 	
 - (id)initWithSpriteFrame:(CCSpriteFrame*)spriteFrame
 {
 	if (self = [super initWithSpriteFrame:(CCSpriteFrame *)spriteFrame])
 	{
+		
 		gravity = -0.55f;
 		maxVelocity.x = 1000;
 		maxVelocity.y = 360;
 		velocity = ccp(0,0);
 		minPos = 20;
 		
-		jumpLimit = velocity.x / (maxVelocity.x * 2.5);
-		if (jumpLimit > 0.35) jumpLimit = 0.35;
-
-		
-		
-		
-		
 		jumpButton = nil;
-		self.gameObjectType = kRunnerType;
 		[self initAnimations];
 		
 		[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:runningAnim]]];

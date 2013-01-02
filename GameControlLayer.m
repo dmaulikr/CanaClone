@@ -27,54 +27,77 @@
 	jumpButton.isToggleable = NO;
 	[self addChild:jumpButtonBase];
 }
-	
-	
-/*- (void)registerWithTouchDispatcher {
-	[[CCDirector sharedDirector].touchDispatcher addTargetedDelegate:self
-															priority:INT_MIN+1
-													 swallowsTouches:YES];
-}*/
 
+- (void)initRunner {
+	CGSize screenSize = [CCDirector sharedDirector].winSize;
 
-/*- (void)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Runner_Atlas.plist"];
+	CCSpriteBatchNode *sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"Runner_Atlas.png"];
+	[self addChild:sceneSpriteBatchNode z:1];
+	
+	runner = [[Runner alloc] initWithSpriteFrame:[[CCSpriteFrameCache
+														   sharedSpriteFrameCache]
+														  spriteFrameByName:@"runner_1.png"]];
+	
+	[runner setJumpButton:jumpButton];
+	[runner setPosition:ccp(screenSize.width * 0.35f,
+							screenSize.height * 0.14f)];
+	
+	[sceneSpriteBatchNode addChild:runner z:100];
+	
+}
+
+- (void)initBuildings
 {
-	[Runner changeState:kStateJumping];
-}*/
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
+	buildingBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png"];
+	[self addChild:buildingBatch z:0];
+	
+	
+}
+
 	
 -(void) update:(ccTime)deltaTime
 {
-	CCArray *listOfGameObjects = [sceneSpriteBatchNode children];
+	[runner updateStateWithDeltaTime:deltaTime];
 	
-	for (GameObject *tempChar in listOfGameObjects) {
-		[tempChar updateStateWithDeltaTime:deltaTime];
+	CCArray *buildingList = [buildingBatch children];
+	
+	for (Building *building in buildingList) {
+		[building updatePos:deltaTime];
 	}
-
 }
 
 -(id)init {
 
     if (self = [super init]) {
-        CGSize screenSize = [CCDirector sharedDirector].winSize;  
         // enable touches
         self.isTouchEnabled = YES;
 		
 		[self initButtons];
 		
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Runner_Atlas.plist"];
-        sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"Runner_Atlas.png"];
-		[self addChild:sceneSpriteBatchNode z:0];
+		[self initRunner];
 		
-		Runner *runner = [[Runner alloc] initWithSpriteFrame:[[CCSpriteFrameCache
-															   sharedSpriteFrameCache]
-															  spriteFrameByName:@"runner_1.png"]];
-		[runner setJumpButton:jumpButton];
-		[runner setPosition:ccp(screenSize.width * 0.35f,
-								screenSize.height * 0.14f)];
 		
-		[sceneSpriteBatchNode addChild:runner
-									 z:100];
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
+		CCSpriteBatchNode *blah = [CCSpriteBatchNode batchNodeWithFile:@"giant_leg_bottom.png"];
+		CCTexture2D *spriteTexture_ = [blah texture];
+		[self addChild:blah];
 		
-		Building *building = [[Building alloc] init];
+		CCSprite *sprite = [CCSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0,0,128,128)];
+		[blah addChild:sprite z:300];
+		
+		sprite.position = ccp( 200, 200);
+		
+		//Building *building = [[Building alloc] init];
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		[self scheduleUpdate];
 	}

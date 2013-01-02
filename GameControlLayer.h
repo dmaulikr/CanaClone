@@ -14,10 +14,10 @@
 #import "Runner.h"
 
 @interface GameControlLayer : CCLayer {
-    CCSprite *runnerSprite;
-	CCSpriteBatchNode *sceneSpriteBatchNode;
-	
+	Runner *runner;
 	SneakyButton *jumpButton;
+	
+	CCSpriteBatchNode *buildingBatch;
 }
 
 @end

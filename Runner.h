@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameObject.h"
+//#import "GameObject.h"
 #import "cocos2d.h"
 #import "Constants.h"
 #import "SneakyButton.h"
 
-@interface Runner : GameObject {
+@interface Runner : CCSprite {
 	//from canabalt
 	CGFloat jump;
 	CGFloat jumpLimit;
@@ -43,6 +43,9 @@
 
 -(void)checkAndClampSpritePosition;
 - (void)addYPosition:(CGFloat)yDelta;
+-(void)updateStateWithDeltaTime:(ccTime)deltaTime;
+
+
 @property (readwrite) CharacterStates characterState;
 
 

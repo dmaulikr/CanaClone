@@ -16,7 +16,7 @@
 		<key>animationFrames</key>
 		<string>17,18,19,20</string>
 		<key>delay</key>
-		<real>0.03</real>
+		<real>0.06</real>
 		<key>filenamePrefix</key>
 		<string>runner_</string>
 	</dict>
@@ -25,7 +25,7 @@
 		<key>animationFrames</key>
 		<string>21,22,23,24,25,26,27</string>
 		<key>delay</key>
-		<real>0.06</real>
+		<real>0.05</real>
 		<key>filenamePrefix</key>
 		<string>runner_</string>
 	</dict>

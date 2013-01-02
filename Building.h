@@ -6,15 +6,18 @@
 //
 //
 
-#import "GameObject.h"
+#import "cocos2d.h"
 
-@interface Building : GameObject
+@interface Building : CCSprite
 {
 	float height;
 	float width;
 	float gap;
-	NSMutableArray *buildings;
 	
+	CCSpriteBatchNode *parent;
+	CCTexture2D *spriteTexture_;
 }
+
+- (void)updatePos:(ccTime)delta;
 
 @end

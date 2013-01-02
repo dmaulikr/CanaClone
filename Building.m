@@ -14,38 +14,41 @@
 
 - (void)createBuildings
 {
+	//CCNode *parent = [self getChildByTag:kTagParentNode];
 	
-	CCTexture2D *wallTex = [[CCTextureCache sharedTextureCache] addImage:@"wall1-left.png"];
+	CCSprite *sprite = [CCSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0,0,128,128)];
+	[parent addChild:sprite z:300];
+	
+	sprite.position = ccp( 200, 200);
 
-	
-	///CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage("pic.png");
-
-	ccTexParams *params = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
-	[wallTex setTexParameters:params];
-	
-	//Then use spriteWithTexture instead of spriteWithFile like this:
-	CCSprite *wall = [CCSprite spriteWithTexture:wallTex rect:CGRectMake(0, 0, 90, 90)];
-	[self addChild:wall];
-	//CCSprite *sprite = CCSprite::spriteWithTexture(texture, CCRectMake(0, 0, 90, 90));
-	
 	
 	return;
 	
 }
 
--(void)updateStateWithDeltaTime:(ccTime)deltaTime
+
+-(void) updatePos:(ccTime)delta
 {
-	return;
+    for (CCSprite* sprite in parent.children)
+    {
+		CGPoint pos=sprite.position;
+		
+		sprite.position = pos;
+	}
 }
-
 
 - (id)init
 {
 	if (self = [super init]) {
-		buildings = [[NSMutableArray alloc] initWithCapacity:4];
+		//buildings = [[NSMutableArray alloc] initWithCapacity:4];
 		
+		//[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlsas.plist"];
+		parent = [CCSpriteBatchNode batchNodeWithFile:@"giant_leg_bottom.png"];
+		spriteTexture_ = [parent texture];
+		[self addChild:parent];
 		
 		[self createBuildings];
+		[self scheduleUpdate];
 	}
 	return self;
 }
