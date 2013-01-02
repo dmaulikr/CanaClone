@@ -112,120 +112,226 @@ static NSArray * windowImages;
 @implementation Building
 
 
-
-- (void)createBuildings
+- (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight
 {
-	//CCNode *parent = [self getChildByTag:kTagParentNode];
 	
-	CCSprite *sprite = [CCSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(0,0,128,128)];
-	[parent addChild:sprite z:300];
+	int maxRow = pixelHeight/tileSize + 1;
+	int maxCol = BUWidth*4 +2; //windows + edges
 	
-	sprite.position = ccp( 200, 200);
-
-	
-	return;
-	
+	for (int row = 0; row <= maxRow; row++) {
+		for (int col = 0; col < maxCol; col++) {
+			CCSprite *sprite;
+			if (row == 0) { //for the top of the building
+				if (col == 0) {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-left.png"];
+				}
+				else if (col == maxCol-1) {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-right.png"];
+				}
+				else {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-middle.png"];
+				}
+			}
+			else if (row%2 == 0 && col > 0 && col < maxCol - 1) { //if in an even row, make it a window
+				if ((col-1)%4 == 0) { //window tex are 4 tiles long
+					sprite = [CCSprite spriteWithSpriteFrameName:@"window2.png"];
+				}
+				else
+					continue;
+			}
+			else {
+				if (col == 0) {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-left.png"];
+				}
+				else if (col == maxCol-1) {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-right.png"];
+				}
+				else {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-middle.png"];
+				}
+			}
+			sprite.anchorPoint = ccp(0.0f, 0.0f);
+			[wallBatch addChild:sprite z:20];
+			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight - row * tileSize);
+		}
+	}
 }
+/*
+- (void)createBuildingsWithCorners:(CGPoint)corners height:(int)height //corners are only x coords
+{
+	int maxRow = height/tileSize;
+	int maxCol = (corners.y-corners.x)/tileSize;
+	for (int row = 0; row <= maxRow; row++) {
+		for (int col = 0; col < maxCol; col++) {
+			CCSprite *sprite;
+			if (row == 0) { //for the top of the building
+				if (col == 0) {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-left.png"];
+				}
+				else if (col == maxCol-1) {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-right.png"];
+				}
+				else {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-middle.png"];
+				}
+			}
+			else if (row%2 == 0 && col > 0 && col < maxCol - 1) { //if in an even row, make it a window
+				if ((col-1)%4 == 0) { //window tex are 4 tiles long
+					sprite = [CCSprite spriteWithSpriteFrameName:@"window2.png"];
+				}
+				else
+					continue;
+			}
+			else {
+				if (col == 0) {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-left.png"];
+				}
+				else if (col == maxCol-1) {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-right.png"];
+				}
+				else {
+					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-middle.png"];
+				}
+			}
+			sprite.anchorPoint = ccp(0.0f, 0.0f);
+			[wallBatch addChild:sprite z:20];
+			sprite.position = ccp( corners.x + col * tileSize, maxRow*tileSize - row * tileSize);
+		}
+	}
+	
+}*/
 
-
+/*
 -(void) updatePos:(ccTime)delta
 {
-    for (CCSprite* sprite in parent.children)
+	for (CCSprite* sprite in parent.children)
     {
 		CGPoint pos=sprite.position;
 		
 		sprite.position = pos;
 	}
+}*/
+
+- (void)initSpriteLists
+{
+	leftWalls = @[ImgWall1Left,
+					 ImgWall2Left,
+					 ImgWall3Left,
+					 ImgWall4Left];
+	rightWalls = @[ImgWall1Right,
+				  ImgWall2Right,
+				  ImgWall3Right,
+				  ImgWall4Right];
+	middleWalls = @[ImgWall1Middle,
+				   ImgWall2Middle,
+				   ImgWall3Middle,
+				   ImgWall4Middle];
+	leftWallsCracked = @[ImgWall1LeftCracked,
+						ImgWall2LeftCracked,
+						ImgWall3LeftCracked,
+						ImgWall4LeftCracked];
+	rightWallsCracked = @[ImgWall1RightCracked,
+						 ImgWall2RightCracked,
+						 ImgWall3RightCracked,
+						 ImgWall4RightCracked];
+	middleWallsCracked = @[ImgWall1MiddleCracked,
+						  ImgWall2MiddleCracked,
+						  ImgWall3MiddleCracked,
+						  ImgWall4MiddleCracked];
+	
+	leftFloors = @[ImgFloor1Left,
+				  ImgFloor2Left];
+	middleFloors = @[ImgFloor1Middle,
+					ImgFloor2Middle];
+	rightFloors = @[ImgFloor1Right,
+				   ImgFloor2Right];
+	
+	leftRoofs = @[ImgRoof1Left,
+				 ImgRoof2Left,
+				 ImgRoof3Left,
+				 ImgRoof4Left,
+				 ImgRoof5Left,
+				 ImgRoof6Left];
+	middleRoofs = @[ImgRoof1Middle,
+				   ImgRoof2Middle,
+				   ImgRoof3Middle,
+				   ImgRoof4Middle,
+				   ImgRoof5Middle,
+				   ImgRoof6Middle];
+	rightRoofs = @[ImgRoof1Right,
+				  ImgRoof2Right,
+				  ImgRoof3Right,
+				  ImgRoof4Right,
+				  ImgRoof5Right,
+				  ImgRoof6Right];
+	
+	leftRoofsCracked = @[ImgRoof1LeftCracked,
+						ImgRoof2LeftCracked,
+						ImgRoof3LeftCracked,
+						ImgRoof4LeftCracked,
+						ImgRoof5LeftCracked,
+						ImgRoof6LeftCracked];
+	middleRoofsCracked = @[ImgRoof1MiddleCracked,
+						  ImgRoof2MiddleCracked,
+						  ImgRoof3MiddleCracked,
+						  ImgRoof4MiddleCracked,
+						  ImgRoof5MiddleCracked,
+						  ImgRoof6MiddleCracked];
+	rightRoofsCracked = @[ImgRoof1RightCracked,
+						 ImgRoof2RightCracked,
+						 ImgRoof3RightCracked,
+						 ImgRoof4RightCracked,
+						 ImgRoof5RightCracked,
+						 ImgRoof6RightCracked];
+	
+	windowImages = @[ImgWindow1,
+					ImgWindow2,
+					ImgWindow3,
+					ImgWindow4];
 }
+
+-(void) update:(ccTime)dTime
+{
+		CGPoint pos=wallBatch.position;
+		pos.x -= dTime;
+		
+		wallBatch.position = pos;
+}
+/*
+- (id)initWithCorners:(CGPoint)corners height:(int)height
+{
+	if (self = [super init]) {
+		[self initSpriteLists];
+		tileSize = 16;
+
+		
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
+		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:400];
+		[self addChild:wallBatch];
+		
+		
+			
+		[self createBuildingsWithCorners:corners height:height];
+	}
+	return self;
+}*/
 
 - (id)init
 {
 	if (self = [super init]) {
 		
-		leftWalls = @[ImgWall1Left,
-					 ImgWall2Left,
-					 ImgWall3Left,
-					 ImgWall4Left];
-		rightWalls = @[ImgWall1Right,
-					  ImgWall2Right,
-					  ImgWall3Right,
-					  ImgWall4Right];
-		middleWalls = @[ImgWall1Middle,
-					   ImgWall2Middle,
-					   ImgWall3Middle,
-					   ImgWall4Middle];
-		leftWallsCracked = @[ImgWall1LeftCracked,
-							ImgWall2LeftCracked,
-							ImgWall3LeftCracked,
-							ImgWall4LeftCracked];
-		rightWallsCracked = @[ImgWall1RightCracked,
-							 ImgWall2RightCracked,
-							 ImgWall3RightCracked,
-							 ImgWall4RightCracked];
-		middleWallsCracked = @[ImgWall1MiddleCracked,
-							  ImgWall2MiddleCracked,
-							  ImgWall3MiddleCracked,
-							  ImgWall4MiddleCracked];
+		[self initSpriteLists];
+		screenSize = [[CCDirector sharedDirector] winSize];
+		tileSize = 16;
+		//super.scrollSpeed = 1.0f;
+
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
+		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:400];
+		wallBatch.anchorPoint = ccp(0.0f,0.0f);
 		
-		leftFloors = @[ImgFloor1Left,
-					  ImgFloor2Left];
-		middleFloors = @[ImgFloor1Middle,
-						ImgFloor2Middle];
-		rightFloors = @[ImgFloor1Right,
-					   ImgFloor2Right];
+		[self addChild:wallBatch];
 		
-		leftRoofs = @[ImgRoof1Left,
-					 ImgRoof2Left,
-					 ImgRoof3Left,
-					 ImgRoof4Left,
-					 ImgRoof5Left,
-					 ImgRoof6Left];
-		middleRoofs = @[ImgRoof1Middle,
-					   ImgRoof2Middle,
-					   ImgRoof3Middle,
-					   ImgRoof4Middle,
-					   ImgRoof5Middle,
-					   ImgRoof6Middle];
-		rightRoofs = @[ImgRoof1Right,
-					  ImgRoof2Right,
-					  ImgRoof3Right,
-					  ImgRoof4Right,
-					  ImgRoof5Right,
-					  ImgRoof6Right];
-		
-		leftRoofsCracked = @[ImgRoof1LeftCracked,
-							ImgRoof2LeftCracked,
-							ImgRoof3LeftCracked,
-							ImgRoof4LeftCracked,
-							ImgRoof5LeftCracked,
-							ImgRoof6LeftCracked];
-		middleRoofsCracked = @[ImgRoof1MiddleCracked,
-							  ImgRoof2MiddleCracked,
-							  ImgRoof3MiddleCracked,
-							  ImgRoof4MiddleCracked,
-							  ImgRoof5MiddleCracked,
-							  ImgRoof6MiddleCracked];
-		rightRoofsCracked = @[ImgRoof1RightCracked,
-							 ImgRoof2RightCracked,
-							 ImgRoof3RightCracked,
-							 ImgRoof4RightCracked,
-							 ImgRoof5RightCracked,
-							 ImgRoof6RightCracked];
-		
-		windowImages = @[ImgWindow1,
-						ImgWindow2,
-						ImgWindow3,
-						ImgWindow4];
-		
-		//buildings = [[NSMutableArray alloc] initWithCapacity:4];
-		
-		//[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlsas.plist"];
-		parent = [CCSpriteBatchNode batchNodeWithFile:@"giant_leg_bottom.png"];
-		spriteTexture_ = [parent texture];
-		[self addChild:parent];
-		
-		[self createBuildings];
-		[self scheduleUpdate];
+		[self createBuildingWithBUWidth:4 pixelHeight:100];
 	}
 	return self;
 }

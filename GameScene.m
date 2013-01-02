@@ -20,9 +20,9 @@
         controlLayer = [GameControlLayer node];
         [self addChild:controlLayer z:2 tag:2];
 		
-		// Gameplay Layer
-       // GameBGLayer *scrollingLayer = [GameBGLayer node];
-       //[self addChild:scrollingLayer z:1 tag:1];
+		// BG Layer
+        GameBGLayer *scrollingLayer = [GameBGLayer node];
+       [self addChild:scrollingLayer z:1 tag:1];
 	}
 	return self;
 }

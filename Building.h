@@ -7,17 +7,18 @@
 //
 
 #import "cocos2d.h"
+#import "BuildingsLayer.h"
 
-@interface Building : CCSprite
+@interface Building : CCLayer
 {
-	float height;
-	float width;
 	float gap;
 	
-	CCSpriteBatchNode *parent;
-	CCTexture2D *spriteTexture_;
+	int tileSize;
+	//float scrollSpeed;
+	CCSpriteBatchNode *wallBatch;
+	CGSize screenSize;
 }
 
-- (void)updatePos:(ccTime)delta;
+- (id)initWithCorners:(CGPoint)corners height:(int)height;
 
 @end

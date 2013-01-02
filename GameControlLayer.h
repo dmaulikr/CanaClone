@@ -10,14 +10,15 @@
 #import "cocos2d.h"
 #import "SneakyButton.h"
 #import "SneakyButtonSkinnedBase.h"
-
+#import "BuildingsLayer.h"
 #import "Runner.h"
 
 @interface GameControlLayer : CCLayer {
 	Runner *runner;
 	SneakyButton *jumpButton;
 	
-	CCSpriteBatchNode *buildingBatch;
+	//CCSpriteBatchNode *buildingBatch;
+	BuildingsLayer *buildingsLayer;
 }
 
 @end

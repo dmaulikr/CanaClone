@@ -89,16 +89,19 @@
 	}
 
 
-	if (velocity.y > 5 && jumpButton.active) { //if in process of jumping but below max speed
+	if (velocity.y > 7 && jumpButton.active) { //if in process of jumping but below max speed
+		if ([self numberOfRunningActions] == 0)
+			[self changeState:kStateJumping];
 		velocity.y += 0.35f;
 	}
 	
 	if (self.position.y > minPos) {  //if above platform level
 		velocity.y += gravity; //apply gravity
 		
-		
-		if ([self numberOfRunningActions] == 0) //fall action if no action running
-			[self changeState:kStateFalling];
+		if (velocity.y < 7) {
+			if ([self numberOfRunningActions] == 0) //fall action if below certain speed
+				[self changeState:kStateFalling];
+		}
 	}
 
 	[self addYPosition:velocity.y];

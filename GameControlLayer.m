@@ -8,7 +8,7 @@
 
 #import "GameControlLayer.h"
 #import "Runner.h"
-#import "Building.h"
+//#import "Building.h"
 
 @implementation GameControlLayer
 
@@ -33,39 +33,43 @@
 
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Runner_Atlas.plist"];
 	CCSpriteBatchNode *sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"Runner_Atlas.png"];
-	[self addChild:sceneSpriteBatchNode z:1];
+	[self addChild:sceneSpriteBatchNode z:100];
 	
 	runner = [[Runner alloc] initWithSpriteFrame:[[CCSpriteFrameCache
 														   sharedSpriteFrameCache]
 														  spriteFrameByName:@"runner_1.png"]];
 	
 	[runner setJumpButton:jumpButton];
-	[runner setPosition:ccp(screenSize.width * 0.35f,
-							screenSize.height * 0.14f)];
+	[runner setPosition:ccp(screenSize.width * 0.25f, 200)];
 	
-	[sceneSpriteBatchNode addChild:runner z:100];
+	[sceneSpriteBatchNode addChild:runner];
 	
 }
 
 - (void)initBuildings
 {
-	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
-	buildingBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png"];
-	[self addChild:buildingBatch z:0];
+	buildingsLayer = [BuildingsLayer node];
+	[self addChild:buildingsLayer z:90];
 	
+	// GameBGLayer *scrollingLayer = [GameBGLayer node];
+	//[self addChild:scrollingLayer z:1 tag:1];
 	
 }
 
-	
+
 -(void) update:(ccTime)deltaTime
 {
 	[runner updateStateWithDeltaTime:deltaTime];
 	
-	CCArray *buildingList = [buildingBatch children];
+	[buildingsLayer updatePos:deltaTime];
+
+	
+	//buildingLayer.position = ccp(buildingLayer.position.x -1 * deltaTime, buildingLayer.position.y);
+	/*CCArray *buildingList = [buildingBatch children];
 	
 	for (Building *building in buildingList) {
 		[building updatePos:deltaTime];
-	}
+	}*/
 }
 
 -(id)init {
@@ -78,56 +82,8 @@
 		
 		[self initRunner];
 		
-		
-		
-		
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
-		CCSpriteBatchNode *wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png"];
-		[self addChild:wallBatch z:0];
-		
-		
-		int maxRow = 20;
-		for (int row = 0; row < maxRow; row++) {
-			for (int col = 0; col < 10; col++) {
-				CCSprite *sprite;
-				if (col == 0) {
-					if (row == 0) {
-						sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-left.png"];
-					}
-					else if (row == maxRow-1) {
-						sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-right.png"];
-					}
-					else {
-						sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-middle.png"];
-					}
-				}
-				else {
-					if (row == 0) {
-						sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-left.png"];
-					}
-					else if (row == maxRow-1) {
-						sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-right.png"];
-					}
-					else {
-						sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-middle.png"];
-					}
-				}
-				
-				[wallBatch addChild:sprite z:20];
-				sprite.position = ccp( 200+ row * sprite.boundingBox.size.width, 300 - col * sprite.boundingBox.size.height);
-			}
-		}
-		
-		//Building *building = [[Building alloc] init];
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		[self initBuildings];
+
 		[self scheduleUpdate];
 	}
 	return self;
