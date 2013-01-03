@@ -15,7 +15,6 @@
 	//float scrollSpeed;
 	CCSpriteBatchNode *wallBatch;
 	CGSize screenSize;
-	
 
 }
 

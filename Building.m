@@ -311,7 +311,7 @@ static NSArray * windowImages;
 		
 		[self initSpriteLists];
 		screenSize = [[CCDirector sharedDirector] winSize];
-		tileSize = 16;
+		tileSize = 32;
 		//super.scrollSpeed = 1.0f;
 		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
@@ -332,7 +332,7 @@ static NSArray * windowImages;
 				
 		[self initSpriteLists];
 		screenSize = [[CCDirector sharedDirector] winSize];
-		tileSize = 16;
+		tileSize = 32;
 		//super.scrollSpeed = 1.0f;
 
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];

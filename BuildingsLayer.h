@@ -15,6 +15,7 @@
 	
 	//Building *building;
 	CGSize screenSize;
+	int runnerXPos;
 
 }
 

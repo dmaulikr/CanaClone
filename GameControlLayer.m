@@ -14,8 +14,8 @@
 
 - (void)initButtons {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
-	CGRect jumpButtonDimensions = CGRectMake(0, 0, 64.0f, 64.0f);
-    CGPoint jumpButtonPosition = ccp(screenSize.width*0.93f, screenSize.height*0.11f);
+	CGRect jumpButtonDimensions = CGRectMake(0, 0, screenSize.width, screenSize.height);
+    CGPoint jumpButtonPosition = ccp(screenSize.width/2, screenSize.height/2);
 	
 	SneakyButtonSkinnedBase *jumpButtonBase = [[SneakyButtonSkinnedBase alloc] init];
 	jumpButtonBase.position = jumpButtonPosition;
@@ -29,7 +29,6 @@
 }
 
 - (void)initRunner {
-	CGSize screenSize = [CCDirector sharedDirector].winSize;
 
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Runner_Atlas.plist"];
 	CCSpriteBatchNode *sceneSpriteBatchNode = [CCSpriteBatchNode batchNodeWithFile:@"Runner_Atlas.png"];
@@ -54,7 +53,6 @@
 	
 }
 
-
 -(void) update:(ccTime)deltaTime
 {
 	
@@ -66,8 +64,6 @@
 
 	
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
-
-
 }
 
 -(id)init {

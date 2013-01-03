@@ -10,6 +10,8 @@
 #import "cocos2d.h"
 #import "Constants.h"
 #import "SneakyButton.h"
+#import <UIKit/UIKit.h>
+
 
 @interface Runner : CCSprite {
 	//from canabalt

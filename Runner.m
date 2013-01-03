@@ -9,6 +9,10 @@
 #import "Runner.h"
 #import "BuildingsLayer.h"
 
+#import <GameKit/GameKit.h>
+#import <UIKit/UIKit.h>
+
+
 
 @implementation Runner
 
@@ -88,11 +92,11 @@
 		
 		if (jumpButton.active) {
 			[self changeState:kStateJumping];
-			if (velocity.y == 0) velocity.y = 9.0f; //initial jump speed
+			if (velocity.y == 0) velocity.y = 8.0f; //initial jump speed
 			//CCLOG(@"start jump");
 		}
 	}
-	if (velocity.y > 7 && jumpButton.active) { //if in process of jumping but below max speed
+	if (velocity.y > 5 && jumpButton.active) { //if in process of jumping but below max speed
 		if ([self numberOfRunningActions] == 0)
 			[self changeState:kStateJumping];
 		velocity.y += 0.30f;
@@ -100,7 +104,7 @@
 	if (self.position.y > minPos) {  //if above platform level
 		velocity.y += gravity; //apply gravity
 		
-		if (velocity.y < 7) {
+		if (velocity.y < 5) {
 			if ([self numberOfRunningActions] == 0) //fall action if below certain speed
 				[self changeState:kStateFalling];
 		}
@@ -120,7 +124,7 @@
 		
 		[self setPosition:ccp(self.position.x, minPos)];
 		
-		if (velocity.y < -12) //if downward speed fast enough, roll animation
+		if (velocity.y < -14) //if downward speed fast enough, roll animation
 			[self changeState:kStateRolling];
 		
 		velocity.y = 0;
@@ -211,12 +215,13 @@
 	return animationToReturn;
 }
 
-	
+
+
 - (id)initWithSpriteFrame:(CCSpriteFrame*)spriteFrame
 {
 	if (self = [super initWithSpriteFrame:(CCSpriteFrame *)spriteFrame])
 	{
-		
+
 		gravity = -0.50f;
 		maxVelocity.x = 1000;
 		maxVelocity.y = 360;

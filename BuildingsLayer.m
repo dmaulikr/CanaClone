@@ -22,8 +22,8 @@
 
 - (void)createBuilding
 {
-	int pixelHeight = arc4random()%120 + 40; //random height between 50 and 150
-	int buildingUnitWidth = arc4random()%4 + 4;
+	int pixelHeight = arc4random()%120 + 50; //random height between 50 and 150
+	int buildingUnitWidth = arc4random()%3 + 4;
 	
 	Building *building = [[Building alloc] initWithBUWidth:buildingUnitWidth pixelHeight:pixelHeight];
 	[self addChild:building];
@@ -33,8 +33,8 @@
 - (int)updatePos:(ccTime)delta
 {
 	int lastPlatHeight;
-	int runnerXPos = 100;
-	int gap = arc4random()%50 + 50;
+	int gap = arc4random()%120 + 150;
+	
 	for (Building *building in self.children)
     {
 		
@@ -43,7 +43,7 @@
 			[self removeChild:building cleanup:YES];
 			continue;
 		} else {
-			building.position = ccp(building.position.x - 160*delta, building.position.y);
+			building.position = ccp(building.position.x - 360*delta, building.position.y);
 
 			
 			if ( (building.position.x + screenSize.width) < runnerXPos && //100 is runner position
@@ -53,8 +53,9 @@
 			}
 		}
 		if (building.tag == 666 ) {
-			if (building.position.x < -gap) {
+			if (-building.position.x > gap) {
 				[self createBuilding];
+				building.tag = 555;
 			}
 			break;
 		}
@@ -73,13 +74,8 @@
 	if (smallestGap > gap  && smallestGap <1000)
 		[self createBuilding];
 
-	return lastPlatHeight;
+	return lastPlatHeight-1;
 	
-}
-
-- (int)BUWidthToPix:(int)BUWidth
-{
-	return ((BUWidth*4)+2)*16;
 }
 
 - (id)init
@@ -87,9 +83,11 @@
 	if (self = [super init]) {
 		
 		screenSize = [[CCDirector sharedDirector] winSize];
+		runnerXPos = 100;
+
 
 		//[self createFirstBuilding]; commented out for simplicity's sake
-		[self createBuilding];
+		[self createFirstBuilding];
 		
 	}
 	return self;
