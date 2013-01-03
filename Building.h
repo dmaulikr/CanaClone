@@ -19,6 +19,10 @@
 
 }
 
+@property int buildingWidth;
+@property int platHeight;
+
+
 - (id)initWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight;
 
 @end

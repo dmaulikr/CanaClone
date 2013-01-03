@@ -111,6 +111,8 @@ static NSArray * windowImages;
 
 @implementation Building
 
+@synthesize buildingWidth;
+@synthesize platHeight;
 
 - (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight
 {
@@ -118,10 +120,14 @@ static NSArray * windowImages;
 }
 
 - (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight atX:(int)xValue
-{
+{	
 	
 	int maxRow = pixelHeight/tileSize + 1;
 	int maxCol = BUWidth*4 +2; //windows + edges
+	
+	buildingWidth = maxCol*tileSize;
+	platHeight = pixelHeight;
+
 	
 	for (int row = 0; row <= maxRow; row++) {
 		for (int col = 0; col < maxCol; col++) {

@@ -40,8 +40,8 @@
 														  spriteFrameByName:@"runner_1.png"]];
 	
 	[runner setJumpButton:jumpButton];
-	runner.anchorPoint = ccp(0.0, 0.0);
-	[runner setPosition:ccp(screenSize.width * 0.25f, 200)];
+	runner.anchorPoint = ccp(0.5f, 0.0);
+	[runner setPosition:ccp(100, 200)];
 	
 	[sceneSpriteBatchNode addChild:runner];
 	
@@ -59,7 +59,12 @@
 {
 	
 	int currentHeight = [buildingsLayer updatePos:deltaTime];
+	
+	if (currentHeight > 300) { //since initial building will be set to over 30k
+		currentHeight = 20;
+	}
 
+	
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
 
 
