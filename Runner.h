@@ -32,7 +32,6 @@
 	CGPoint velocity;
 	CGPoint maxVelocity;
 	CGFloat minPos;
-
 	
 }
 
@@ -43,19 +42,18 @@
 @property (copy) NSString * epitaph;
 @property BOOL pause;
 
--(void)checkAndClampSpritePosition;
+//-(void)checkAndClampSpritePosition;
 - (void)addYPosition:(CGFloat)yDelta;
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime currentPlatHeight:(int)platHeight;
 
 
 @property (readwrite) CharacterStates characterState;
 
-
 @property (nonatomic, retain) CCAnimation *runningAnim;
 @property (nonatomic, retain) CCAnimation *jumpingAnim;
 @property (nonatomic, retain) CCAnimation *rollingAnim;
 @property (nonatomic, retain) CCAnimation *fallingAnim;
 
-@property (nonatomic,assign) SneakyButton *jumpButton;
+@property BOOL isTouched;
 
 @end

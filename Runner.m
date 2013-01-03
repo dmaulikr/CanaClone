@@ -9,16 +9,11 @@
 #import "Runner.h"
 #import "BuildingsLayer.h"
 
-#import <GameKit/GameKit.h>
-#import <UIKit/UIKit.h>
-
-
-
 @implementation Runner
 
 @synthesize characterState;
 
-@synthesize jumpButton;
+@synthesize isTouched;
 
 @synthesize runningAnim;
 @synthesize jumpingAnim;
@@ -90,13 +85,13 @@
 	if ((self.characterState == kStateRunning) ||
 		(self.characterState == kStateRolling)) {
 		
-		if (jumpButton.active) {
+		if (isTouched) {
 			[self changeState:kStateJumping];
 			if (velocity.y == 0) velocity.y = 8.0f; //initial jump speed
 			//CCLOG(@"start jump");
 		}
 	}
-	if (velocity.y > 5 && jumpButton.active) { //if in process of jumping but below max speed
+	if (velocity.y > 5 && isTouched) { //if in process of jumping but below max speed
 		if ([self numberOfRunningActions] == 0)
 			[self changeState:kStateJumping];
 		velocity.y += 0.30f;
@@ -216,7 +211,6 @@
 }
 
 
-
 - (id)initWithSpriteFrame:(CCSpriteFrame*)spriteFrame
 {
 	if (self = [super initWithSpriteFrame:(CCSpriteFrame *)spriteFrame])
@@ -228,7 +222,7 @@
 		velocity = ccp(0,0);
 		minPos = 100;
 		
-		jumpButton = nil;
+		isTouched = NO;		
 		[self initAnimations];
 		
 		[self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:runningAnim]]];

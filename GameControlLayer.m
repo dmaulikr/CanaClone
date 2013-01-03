@@ -12,22 +12,6 @@
 
 @implementation GameControlLayer
 
-- (void)initButtons {
-    CGSize screenSize = [CCDirector sharedDirector].winSize;
-	CGRect jumpButtonDimensions = CGRectMake(0, 0, screenSize.width, screenSize.height);
-    CGPoint jumpButtonPosition = ccp(screenSize.width/2, screenSize.height/2);
-	
-	SneakyButtonSkinnedBase *jumpButtonBase = [[SneakyButtonSkinnedBase alloc] init];
-	jumpButtonBase.position = jumpButtonPosition;
-	jumpButtonBase.defaultSprite =[CCSprite spriteWithFile:@"crane3.png"];
-	jumpButtonBase.button = [[SneakyButton alloc] initWithRect:jumpButtonDimensions];
-
-	jumpButton = jumpButtonBase.button;
-	jumpButton.isHoldable = YES;
-	jumpButton.isToggleable = NO;
-	[self addChild:jumpButtonBase];
-}
-
 - (void)initRunner {
 
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Runner_Atlas.plist"];
@@ -38,7 +22,6 @@
 														   sharedSpriteFrameCache]
 														  spriteFrameByName:@"runner_1.png"]];
 	
-	[runner setJumpButton:jumpButton];
 	runner.anchorPoint = ccp(0.5f, 0.0);
 	[runner setPosition:ccp(100, 200)];
 	
@@ -66,14 +49,21 @@
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
 }
 
+-(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	runner.isTouched = YES;
+}
+
+- (void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	if(!runner.isTouched) return;
+	runner.isTouched = NO;
+}
+
 -(id)init {
 
     if (self = [super init]) {
         // enable touches
         self.isTouchEnabled = YES;
-		
-		[self initButtons];
-		
+				
 		[self initRunner];
 		
 		[self initBuildings];
