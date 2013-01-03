@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "GameObject.h"
 #import "cocos2d.h"
 #import "Constants.h"
 #import "SneakyButton.h"
@@ -31,6 +30,7 @@
 	CGPoint velocity;
 	CGPoint maxVelocity;
 	CGFloat minPos;
+
 	
 }
 
@@ -43,7 +43,7 @@
 
 -(void)checkAndClampSpritePosition;
 - (void)addYPosition:(CGFloat)yDelta;
--(void)updateStateWithDeltaTime:(ccTime)deltaTime;
+-(void)updateStateWithDeltaTime:(ccTime)deltaTime currentPlatHeight:(int)platHeight;
 
 
 @property (readwrite) CharacterStates characterState;

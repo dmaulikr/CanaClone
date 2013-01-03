@@ -7,6 +7,8 @@
 //
 
 #import "Runner.h"
+#import "BuildingsLayer.h"
+
 
 @implementation Runner
 
@@ -75,9 +77,12 @@
 }
 
 #pragma mark -
--(void)updateStateWithDeltaTime:(ccTime)deltaTime
+-(void)updateStateWithDeltaTime:(ccTime)deltaTime currentPlatHeight:(int)platHeight
 		   //andListOfGameObjects:(CCArray*)listOfGameObjects
 {
+	minPos = platHeight;
+	
+	
 	if ((self.characterState == kStateRunning) ||
 		(self.characterState == kStateRolling)) {
 		
@@ -87,14 +92,11 @@
 			//CCLOG(@"start jump");
 		}
 	}
-
-
 	if (velocity.y > 7 && jumpButton.active) { //if in process of jumping but below max speed
 		if ([self numberOfRunningActions] == 0)
 			[self changeState:kStateJumping];
-		velocity.y += 0.35f;
+		velocity.y += 0.30f;
 	}
-	
 	if (self.position.y > minPos) {  //if above platform level
 		velocity.y += gravity; //apply gravity
 		
@@ -104,13 +106,13 @@
 		}
 	}
 
-	[self addYPosition:velocity.y];
+	[self addYPosition:velocity.y * deltaTime * 50];
 
-	
-	if (velocity.y < 0) {
+	if (velocity.y < 0) { //falling if vel.y < 0
 		if ([self numberOfRunningActions] == 0)
 			[self changeState:kStateFalling];
 	}
+	
 	
 	
 	if (self.position.y < minPos) { //if below platform level
@@ -135,10 +137,7 @@
 
 - (void)addYPosition:(CGFloat)yDelta
 {
-	//CGPoint *newPos = ccp(self.position.y + yPosition, self.position.x)];
 
-	//CCMoveBy *moveAction = [CCMoveBy actionWithDuration:1.16f  position:ccp(0, yDelta)];
-	//[self runAction:moveAction];
 	[self setPosition:ccp(self.position.x, self.position.y + yDelta)];
 }
 	
@@ -218,11 +217,11 @@
 	if (self = [super initWithSpriteFrame:(CCSpriteFrame *)spriteFrame])
 	{
 		
-		gravity = -0.55f;
+		gravity = -0.50f;
 		maxVelocity.x = 1000;
 		maxVelocity.y = 360;
 		velocity = ccp(0,0);
-		minPos = 20;
+		minPos = 100;
 		
 		jumpButton = nil;
 		[self initAnimations];

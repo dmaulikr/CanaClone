@@ -114,6 +114,11 @@ static NSArray * windowImages;
 
 - (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight
 {
+	[self createBuildingWithBUWidth:BUWidth pixelHeight:pixelHeight atX:screenSize.width];
+}
+
+- (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight atX:(int)xValue
+{
 	
 	int maxRow = pixelHeight/tileSize + 1;
 	int maxCol = BUWidth*4 +2; //windows + edges
@@ -150,12 +155,13 @@ static NSArray * windowImages;
 					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-middle.png"];
 				}
 			}
-			sprite.anchorPoint = ccp(0.0f, 0.0f);
+			sprite.anchorPoint = ccp(0.0f, 1.0f);
 			[wallBatch addChild:sprite z:20];
-			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight - row * tileSize);
+			sprite.position = ccp(xValue + col * tileSize, pixelHeight - row * tileSize);
 		}
 	}
 }
+
 /*
 - (void)createBuildingsWithCorners:(CGPoint)corners height:(int)height //corners are only x coords
 {
@@ -290,33 +296,10 @@ static NSArray * windowImages;
 					ImgWindow4];
 }
 
--(void) update:(ccTime)dTime
-{
-		CGPoint pos=wallBatch.position;
-		pos.x -= dTime;
-		
-		wallBatch.position = pos;
-}
-/*
-- (id)initWithCorners:(CGPoint)corners height:(int)height
-{
-	if (self = [super init]) {
-		[self initSpriteLists];
-		tileSize = 16;
 
-		
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
-		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:400];
-		[self addChild:wallBatch];
-		
-		
-			
-		[self createBuildingsWithCorners:corners height:height];
-	}
-	return self;
-}*/
 
-- (id)init
+- (id)initWithBUWidth:(int)BUWidth
+		  pixelHeight:(int)pixelHeight
 {
 	if (self = [super init]) {
 		
@@ -324,14 +307,35 @@ static NSArray * windowImages;
 		screenSize = [[CCDirector sharedDirector] winSize];
 		tileSize = 16;
 		//super.scrollSpeed = 1.0f;
-
+		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
-		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:400];
+		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:550];
 		wallBatch.anchorPoint = ccp(0.0f,0.0f);
 		
 		[self addChild:wallBatch];
 		
-		[self createBuildingWithBUWidth:4 pixelHeight:100];
+		[self createBuildingWithBUWidth:BUWidth pixelHeight:pixelHeight];
+		
+	}
+	return self;
+}
+
+- (id)init
+{
+	if (self = [super init]) {
+				
+		[self initSpriteLists];
+		screenSize = [[CCDirector sharedDirector] winSize];
+		tileSize = 16;
+		//super.scrollSpeed = 1.0f;
+
+		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
+		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:400];
+		wallBatch.anchorPoint = ccp(0.0f,0.0f); //anchor on top right
+		
+		[self addChild:wallBatch];
+		
+		[self createBuildingWithBUWidth:18 pixelHeight:100 atX:0]; //makes screenlong platform
 	}
 	return self;
 }

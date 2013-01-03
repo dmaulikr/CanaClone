@@ -40,6 +40,7 @@
 														  spriteFrameByName:@"runner_1.png"]];
 	
 	[runner setJumpButton:jumpButton];
+	runner.anchorPoint = ccp(0.0, 0.0);
 	[runner setPosition:ccp(screenSize.width * 0.25f, 200)];
 	
 	[sceneSpriteBatchNode addChild:runner];
@@ -51,25 +52,17 @@
 	buildingsLayer = [BuildingsLayer node];
 	[self addChild:buildingsLayer z:90];
 	
-	// GameBGLayer *scrollingLayer = [GameBGLayer node];
-	//[self addChild:scrollingLayer z:1 tag:1];
-	
 }
 
 
 -(void) update:(ccTime)deltaTime
 {
-	[runner updateStateWithDeltaTime:deltaTime];
 	
-	[buildingsLayer updatePos:deltaTime];
+	int currentHeight = [buildingsLayer updatePos:deltaTime];
 
-	
-	//buildingLayer.position = ccp(buildingLayer.position.x -1 * deltaTime, buildingLayer.position.y);
-	/*CCArray *buildingList = [buildingBatch children];
-	
-	for (Building *building in buildingList) {
-		[building updatePos:deltaTime];
-	}*/
+	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
+
+
 }
 
 -(id)init {

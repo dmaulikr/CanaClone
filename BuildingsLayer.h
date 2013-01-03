@@ -8,7 +8,7 @@
 
 #import "CCLayer.h"
 #import "Building.h"
-@class Building;
+
 @interface BuildingsLayer : CCLayer
 {
 	float scrollSpeed;
@@ -18,7 +18,6 @@
 
 }
 
-- (void)updatePos:(ccTime)delta;
-
+- (int)updatePos:(ccTime)delta;
 
 @end
