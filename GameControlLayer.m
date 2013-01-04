@@ -59,7 +59,6 @@
 {
 	buildingsLayer = [BuildingsLayer node];
 	[self addChild:buildingsLayer z:90];
-	
 }
 
 - (void)initBG
@@ -82,14 +81,12 @@
 	
 	buildingsLayer.scrollSpeed += acceleration.x * deltaTime;
 	if (buildingsLayer.scrollSpeed > 1000) buildingsLayer.scrollSpeed = 1000;
-	///CCLOG(@"%f",buildingsLayer.scrollSpeed);
 	
 	[scrollingLayer update:deltaTime withSpeed:buildingsLayer.scrollSpeed];
 	int currentHeight = [buildingsLayer updatePos:deltaTime];
 	
-	if (currentHeight > 300) { //since initial building will be set to over 30k
+	if (currentHeight > 300) //since initial building will be set to over 30k
 		currentHeight = -10;
-	}
 
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
 }
