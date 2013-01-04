@@ -87,19 +87,19 @@
 		
 		if (isTouched) {
 			[self changeState:kStateJumping];
-			if (velocity.y == 0) velocity.y = 8.0f; //initial jump speed
+			if (velocity.y == 0) velocity.y = 8.5f; //initial jump speed
 			//CCLOG(@"start jump");
 		}
 	}
 	if (velocity.y > 5 && isTouched) { //if in process of jumping but below max speed
 		if ([self numberOfRunningActions] == 0)
 			[self changeState:kStateJumping];
-		velocity.y += 0.30f;
+		velocity.y += 0.20f;
 	}
 	if (self.position.y > minPos) {  //if above platform level
 		velocity.y += gravity; //apply gravity
 		
-		if (velocity.y < 5) {
+		if (velocity.y < 6) {
 			if ([self numberOfRunningActions] == 0) //fall action if below certain speed
 				[self changeState:kStateFalling];
 		}
@@ -131,12 +131,31 @@
 		if (self.position.y == minPos)
 			[self changeState:kStateRunning];
 	}
+	
+	
+	
+	
+	//horizontal movement-----------------------------
+	
+	//walldeath
+	if (acceleration.x <= 0)
+		//return [super update];
+	
+	//speed & acceleration
+	if (velocity.x < 0) velocity.x = 0;
+	else if (velocity.x < 100) acceleration.x = 60;
+	else if (velocity.x < 250) acceleration.x = 36;
+	else if (velocity.x < 400) acceleration.x = 24;
+	else if (velocity.x < 600) acceleration.x = 12;
+	else acceleration.x = 4;
+	
+	
+	
 
 }
 
 - (void)addYPosition:(CGFloat)yDelta
 {
-
 	[self setPosition:ccp(self.position.x, self.position.y + yDelta)];
 }
 	

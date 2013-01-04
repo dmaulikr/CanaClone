@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "BuildingsLayer.h"
+#import "GameBGLayer.h"
 #import "Runner.h"
 
 @interface GameControlLayer : CCLayer {
+	CGPoint acceleration;
+
 	Runner *runner;
-	
-	//CCSpriteBatchNode *buildingBatch;
 	BuildingsLayer *buildingsLayer;
+	GameBGLayer *scrollingLayer;
 }
 
 @end

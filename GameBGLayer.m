@@ -15,7 +15,7 @@
 {
 	//1st set
     CCSprite *bgLayer = [CCSprite spriteWithSpriteFrameName:@"midground1.png"];
-	bgLayer.position = ccp(0,screenSize.height/2-40);
+	bgLayer.position = ccp(0,screenSize.height/2-50);
 	[objectSpriteBatchNode addChild:bgLayer z:2];
 	bgWidth = bgLayer.boundingBox.size.width;
 	
@@ -25,7 +25,7 @@
 	
 	//2nd set
 	CCSprite *bgLayer2 = [CCSprite spriteWithSpriteFrameName:@"midground2.png"];
-	bgLayer2.position = ccp(bgWidth, screenSize.height / 2-40);
+	bgLayer2.position = ccp(bgWidth, screenSize.height / 2-50);
 	[objectSpriteBatchNode addChild:bgLayer2 z:2];
 
 	CCSprite *mgLayer2 = [CCSprite spriteWithSpriteFrameName:@"background.png"];
@@ -34,7 +34,7 @@
 	
 	//3nd set
 	CCSprite *bgLayer3 = [CCSprite spriteWithSpriteFrameName:@"midground1.png"];
-	bgLayer3.position = ccp(bgWidth*2, screenSize.height / 2-40);
+	bgLayer3.position = ccp(bgWidth*2, screenSize.height / 2-50);
 	[objectSpriteBatchNode addChild:bgLayer3 z:2];
 	
 	CCSprite *mgLayer3 = [CCSprite spriteWithSpriteFrameName:@"background.png"];
@@ -43,7 +43,7 @@
 	
 	//4th set
 	CCSprite *bgLayer4 = [CCSprite spriteWithSpriteFrameName:@"midground2.png"];
-	bgLayer4.position = ccp(bgWidth*3, screenSize.height / 2-40);
+	bgLayer4.position = ccp(bgWidth*3, screenSize.height / 2-50);
 	[objectSpriteBatchNode addChild:bgLayer4 z:2];
 	
 	CCSprite *mgLayer4 = [CCSprite spriteWithSpriteFrameName:@"background.png"];
@@ -60,17 +60,17 @@
 	[speedFactors addObject:[NSNumber numberWithFloat:2.0f]];
 	[speedFactors addObject:[NSNumber numberWithFloat:0.7f]];
 	[speedFactors addObject:[NSNumber numberWithFloat:1.2f]];
-	scrollSpeed = 1.0f;
+
 }
 
--(void) update:(ccTime)delta
-{
+-(void) update:(ccTime)delta withSpeed:(float)scrollSpeed
+{	
     for (CCSprite* sprite in objectSpriteBatchNode.children)
     {
 		NSNumber* factor=[speedFactors objectAtIndex:sprite.zOrder];
 		CGPoint pos=sprite.position;
 		
-		pos.x -=(scrollSpeed * factor.floatValue) * (delta * 50);
+		pos.x -= scrollSpeed/2 * factor.floatValue * delta;
 		
 		if (pos.x < -bgWidth) {
 			pos.x += bgWidth * 4;
@@ -89,8 +89,6 @@
 		[self addChild:objectSpriteBatchNode z:10];
 		
 		[self addScrollingBackgroundWithParallax];
-
-        [self scheduleUpdate];
 		
 	}
 	return self;

@@ -12,17 +12,12 @@
 
 - (id)init
 {
-	if (self = [super init]) {
-		//gameLayer = [GameLayer node];
-		//[self addChild:gameLayer];
-		
+	if (self = [super init]) {		
 		// Initialize the Control Layer
         controlLayer = [GameControlLayer node];
         [self addChild:controlLayer z:2 tag:2];
 		
-		// BG Layer
-        GameBGLayer *scrollingLayer = [GameBGLayer node];
-       [self addChild:scrollingLayer z:1 tag:1];
+
 	}
 	return self;
 }

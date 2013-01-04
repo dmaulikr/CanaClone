@@ -30,6 +30,7 @@
 	
 	float gravity;
 	CGPoint velocity;
+	CGPoint acceleration;
 	CGPoint maxVelocity;
 	CGFloat minPos;
 	

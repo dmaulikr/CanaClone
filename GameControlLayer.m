@@ -36,16 +36,35 @@
 	
 }
 
+- (void)initBG
+{
+	// BG Layer
+	scrollingLayer = [GameBGLayer node];
+	[self addChild:scrollingLayer z:1 tag:1];
+}
+
 -(void) update:(ccTime)deltaTime
 {
+	//slowly increases speed
+	int xVel = buildingsLayer.scrollSpeed;
 	
+	if (xVel < 100) acceleration.x = 6;
+	else if (xVel < 250) acceleration.x = 4;
+	else if	(xVel < 400) acceleration.x = 3;
+	else if (xVel < 600) acceleration.x = 2;
+	else acceleration.x = 1;
+	
+	buildingsLayer.scrollSpeed += acceleration.x * deltaTime;
+	if (buildingsLayer.scrollSpeed > 1000) buildingsLayer.scrollSpeed = 1000;
+	///CCLOG(@"%f",buildingsLayer.scrollSpeed);
+	
+	[scrollingLayer update:deltaTime withSpeed:buildingsLayer.scrollSpeed];
 	int currentHeight = [buildingsLayer updatePos:deltaTime];
 	
 	if (currentHeight > 300) { //since initial building will be set to over 30k
-		currentHeight = 20;
+		currentHeight = -10;
 	}
 
-	
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
 }
 
@@ -64,6 +83,8 @@
         // enable touches
         self.isTouchEnabled = YES;
 				
+		[self initBG];
+		
 		[self initRunner];
 		
 		[self initBuildings];

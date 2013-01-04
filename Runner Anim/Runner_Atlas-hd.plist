@@ -1,874 +1,516 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>frames</key>
-	<dict>
-		
-		<key>runner_1.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {66, 86}}</string>
-			<key>spriteOffset</key>
-			<string>{-3, 5}</string>
-			<key>spriteSize</key>
-			<string>{66, 86}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{0, 0}, {66, 86}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_10.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 0}, {58, 90}}</string>
-			<key>spriteOffset</key>
-			<string>{4, 3}</string>
-			<key>spriteSize</key>
-			<string>{58, 90}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{68, 0}, {58, 90}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_11.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{15, 0}, {46, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{2, 1}</string>
-			<key>spriteSize</key>
-			<string>{46, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{128, 0}, {46, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_12.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 0}, {46, 96}}</string>
-			<key>spriteOffset</key>
-			<string>{2, -0}</string>
-			<key>spriteSize</key>
-			<string>{46, 96}</string>
-			<key>spriteSourceSize</key>
-			<string>{64, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{176, 0}, {46, 96}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_13.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{15, 2}, {42, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -1}</string>
-			<key>spriteSize</key>
-			<string>{42, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{224, 0}, {42, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_14.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 2}, {42, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{-4, -1}</string>
-			<key>spriteSize</key>
-			<string>{42, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{268, 0}, {42, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_15.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{15, 2}, {42, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -1}</string>
-			<key>spriteSize</key>
-			<string>{42, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{312, 0}, {42, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_16.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 2}, {58, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{-7, -1}</string>
-			<key>spriteSize</key>
-			<string>{58, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{356, 0}, {58, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_17.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 3}, {62, 90}}</string>
-			<key>spriteOffset</key>
-			<string>{-5, -0}</string>
-			<key>spriteSize</key>
-			<string>{62, 90}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{416, 0}, {62, 90}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_18.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 3}, {66, 86}}</string>
-			<key>spriteOffset</key>
-			<string>{-3, 2}</string>
-			<key>spriteSize</key>
-			<string>{66, 86}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{0, 100}, {66, 86}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_19.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{3, 0}, {58, 90}}</string>
-			<key>spriteOffset</key>
-			<string>{-4, 3}</string>
-			<key>spriteSize</key>
-			<string>{58, 90}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{68, 100}, {58, 90}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_2.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{7, 0}, {58, 90}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 3}</string>
-			<key>spriteSize</key>
-			<string>{58, 90}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{128, 100}, {58, 90}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_20.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 0}, {50, 82}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 7}</string>
-			<key>spriteSize</key>
-			<string>{50, 82}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{188, 100}, {50, 82}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_21.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{3, 0}, {66, 90}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 3}</string>
-			<key>spriteSize</key>
-			<string>{66, 90}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{240, 100}, {66, 90}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_22.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{3, 0}, {54, 96}}</string>
-			<key>spriteOffset</key>
-			<string>{-6, -0}</string>
-			<key>spriteSize</key>
-			<string>{54, 96}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{308, 100}, {54, 96}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_23.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{3, 0}, {46, 96}}</string>
-			<key>spriteOffset</key>
-			<string>{-10, -0}</string>
-			<key>spriteSize</key>
-			<string>{46, 96}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{364, 100}, {46, 96}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_24.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {70, 90}}</string>
-			<key>spriteOffset</key>
-			<string>{-1, 3}</string>
-			<key>spriteSize</key>
-			<string>{70, 90}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{412, 100}, {70, 90}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_25.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 0}, {62, 96}}</string>
-			<key>spriteOffset</key>
-			<string>{-5, -0}</string>
-			<key>spriteSize</key>
-			<string>{62, 96}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{0, 200}, {62, 96}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_26.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{7, 0}, {46, 96}}</string>
-			<key>spriteOffset</key>
-			<string>{-6, -0}</string>
-			<key>spriteSize</key>
-			<string>{46, 96}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{64, 200}, {46, 96}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_27.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{7, 0}, {58, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 1}</string>
-			<key>spriteSize</key>
-			<string>{58, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{112, 200}, {58, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_28.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 11}, {54, 82}}</string>
-			<key>spriteOffset</key>
-			<string>{2, -4}</string>
-			<key>spriteSize</key>
-			<string>{54, 82}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{172, 200}, {54, 82}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_29.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{15, 22}, {54, 74}}</string>
-			<key>spriteOffset</key>
-			<string>{6, -11}</string>
-			<key>spriteSize</key>
-			<string>{54, 74}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{228, 200}, {54, 74}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_3.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 0}, {46, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{-2, 1}</string>
-			<key>spriteSize</key>
-			<string>{46, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{284, 200}, {46, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_30.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{7, 38}, {58, 58}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -19}</string>
-			<key>spriteSize</key>
-			<string>{58, 58}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{332, 200}, {58, 58}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_31.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{2, 50}, {62, 46}}</string>
-			<key>spriteOffset</key>
-			<string>{1, -25}</string>
-			<key>spriteSize</key>
-			<string>{62, 46}</string>
-			<key>spriteSourceSize</key>
-			<string>{64, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{392, 200}, {62, 46}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_32.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{3, 50}, {62, 46}}</string>
-			<key>spriteOffset</key>
-			<string>{-2, -25}</string>
-			<key>spriteSize</key>
-			<string>{62, 46}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{0, 300}, {62, 46}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_33.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 34}, {66, 62}}</string>
-			<key>spriteOffset</key>
-			<string>{-3, -17}</string>
-			<key>spriteSize</key>
-			<string>{66, 62}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{64, 300}, {66, 62}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_34.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{0, 38}, {72, 58}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -19}</string>
-			<key>spriteSize</key>
-			<string>{72, 58}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{132, 300}, {72, 58}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_35.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{2, 38}, {70, 58}}</string>
-			<key>spriteOffset</key>
-			<string>{1, -19}</string>
-			<key>spriteSize</key>
-			<string>{70, 58}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{208, 300}, {70, 58}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_36.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{7, 34}, {50, 62}}</string>
-			<key>spriteOffset</key>
-			<string>{-4, -17}</string>
-			<key>spriteSize</key>
-			<string>{50, 62}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{280, 300}, {50, 62}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_37.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 22}, {42, 74}}</string>
-			<key>spriteOffset</key>
-			<string>{-4, -11}</string>
-			<key>spriteSize</key>
-			<string>{42, 74}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{332, 300}, {42, 74}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_38.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{7, 10}, {42, 86}}</string>
-			<key>spriteOffset</key>
-			<string>{-8, -5}</string>
-			<key>spriteSize</key>
-			<string>{42, 86}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{376, 300}, {42, 86}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_4.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 0}, {46, 96}}</string>
-			<key>spriteOffset</key>
-			<string>{-2, -0}</string>
-			<key>spriteSize</key>
-			<string>{46, 96}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{420, 300}, {46, 96}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_5.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 2}, {42, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{-4, -1}</string>
-			<key>spriteSize</key>
-			<string>{42, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{468, 300}, {42, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_6.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{11, 2}, {42, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{-4, -1}</string>
-			<key>spriteSize</key>
-			<string>{42, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{0, 400}, {42, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_7.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{15, 2}, {42, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{0, -1}</string>
-			<key>spriteSize</key>
-			<string>{42, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{44, 400}, {42, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_8.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{3, 2}, {58, 94}}</string>
-			<key>spriteOffset</key>
-			<string>{-4, -1}</string>
-			<key>spriteSize</key>
-			<string>{58, 94}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{88, 400}, {58, 94}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-		<key>runner_9.png</key>
-		<dict>
-			<key>aliases</key>
-			<array>
-			
-			</array>
-			<key>spriteColorRect</key>
-			<string>{{3, 0}, {66, 86}}</string>
-			<key>spriteOffset</key>
-			<string>{0, 5}</string>
-			<key>spriteSize</key>
-			<string>{66, 86}</string>
-			<key>spriteSourceSize</key>
-			<string>{72, 96}</string>
-			<key>spriteTrimmed</key>
-			<true/>
-			<key>textureRect</key>
-			<string>{{148, 400}, {66, 86}}</string>
-			<key>textureRotated</key>
-			<false/>
-		</dict>
-		
-	</dict>
-	<key>metadata</key>
-	<dict>
-		<key>version</key>
-		<string>1.5.8</string>
-		<key>format</key>
-		<integer>3</integer>
-		<key>size</key>
-		<string>{512, 512}</string>
-		<key>name</key>
-		<string>runners</string>
-		<key>premultipliedAlpha</key>
-		<false/>
-		<key>target</key>
-		<dict>
-			<key>name</key>
-			<string>default</string>
-			<key>textureFileName</key>
-			<string>Runner_Atlas-hd copy</string>
-			<key>textureFileExtension</key>
-			<string>.png</string>
-			<key>coordinatesFileName</key>
-			<string>Runner_Atlas-hd</string>
-			<key>coordinatesFileExtension</key>
-			<string>.plist</string>
-			<key>premultipliedAlpha</key>
-			<false/>
-		</dict>
-	</dict>
-</dict>
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>runner_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{32,42}}</string>
+                <key>offset</key>
+                <string>{-2,3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{32,42}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_10.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{36,2},{28,44}}</string>
+                <key>offset</key>
+                <string>{1,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,0},{28,44}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_11.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{66,2},{22,46}}</string>
+                <key>offset</key>
+                <string>{0,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{7,0},{22,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_12.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{90,2},{22,48}}</string>
+                <key>offset</key>
+                <string>{1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,0},{22,48}}</string>
+                <key>sourceSize</key>
+                <string>{32,48}</string>
+            </dict>
+            <key>runner_13.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{114,2},{20,46}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,2},{20,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_14.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{136,2},{20,46}}</string>
+                <key>offset</key>
+                <string>{-2,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,2},{20,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_15.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{158,2},{20,46}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,2},{20,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_16.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{180,2},{28,46}}</string>
+                <key>offset</key>
+                <string>{-4,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{28,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_17.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{210,2},{30,44}}</string>
+                <key>offset</key>
+                <string>{-3,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,1},{30,44}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_18.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,52},{32,42}}</string>
+                <key>offset</key>
+                <string>{-2,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,1},{32,42}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_19.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{36,52},{28,44}}</string>
+                <key>offset</key>
+                <string>{-2,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{28,44}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{36,2},{28,44}}</string>
+                <key>offset</key>
+                <string>{-1,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,0},{28,44}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_20.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{66,52},{24,40}}</string>
+                <key>offset</key>
+                <string>{-1,4}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,0},{24,40}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_21.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{92,52},{32,44}}</string>
+                <key>offset</key>
+                <string>{-1,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{32,44}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_22.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{126,52},{26,48}}</string>
+                <key>offset</key>
+                <string>{-4,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{26,48}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_23.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{154,52},{22,48}}</string>
+                <key>offset</key>
+                <string>{-5,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{22,48}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_24.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{178,52},{34,44}}</string>
+                <key>offset</key>
+                <string>{-1,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{34,44}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_25.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{214,52},{30,48}}</string>
+                <key>offset</key>
+                <string>{-3,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,48}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_26.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,102},{22,48}}</string>
+                <key>offset</key>
+                <string>{-3,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,0},{22,48}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_27.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{26,102},{28,46}}</string>
+                <key>offset</key>
+                <string>{-1,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,0},{28,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_28.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{56,102},{26,40}}</string>
+                <key>offset</key>
+                <string>{1,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,5},{26,40}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_29.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{84,102},{26,36}}</string>
+                <key>offset</key>
+                <string>{3,-6}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,12},{26,36}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_3.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{66,2},{22,46}}</string>
+                <key>offset</key>
+                <string>{-2,1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{5,0},{22,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_30.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{112,102},{28,28}}</string>
+                <key>offset</key>
+                <string>{0,-10}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,20},{28,28}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_31.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{142,102},{30,22}}</string>
+                <key>offset</key>
+                <string>{1,-13}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,26},{30,22}}</string>
+                <key>sourceSize</key>
+                <string>{32,48}</string>
+            </dict>
+            <key>runner_32.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{174,102},{30,22}}</string>
+                <key>offset</key>
+                <string>{-1,-13}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,26},{30,22}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_33.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{206,102},{32,30}}</string>
+                <key>offset</key>
+                <string>{-2,-9}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,18},{32,30}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_34.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,152},{36,28}}</string>
+                <key>offset</key>
+                <string>{0,-10}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,20},{36,28}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_35.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{40,152},{34,28}}</string>
+                <key>offset</key>
+                <string>{1,-10}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,20},{34,28}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_36.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{76,152},{24,30}}</string>
+                <key>offset</key>
+                <string>{-2,-9}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,18},{24,30}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_37.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{102,152},{20,36}}</string>
+                <key>offset</key>
+                <string>{-2,-6}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,12},{20,36}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_38.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{124,152},{20,42}}</string>
+                <key>offset</key>
+                <string>{-4,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{4,6},{20,42}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_4.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{90,2},{22,48}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,0},{22,48}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_5.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{146,152},{20,46}}</string>
+                <key>offset</key>
+                <string>{-2,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,2},{20,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_6.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{168,152},{20,46}}</string>
+                <key>offset</key>
+                <string>{-2,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,2},{20,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_7.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{190,152},{20,46}}</string>
+                <key>offset</key>
+                <string>{0,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{8,2},{20,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_8.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{212,152},{28,46}}</string>
+                <key>offset</key>
+                <string>{-2,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,2},{28,46}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+            <key>runner_9.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,200},{30,42}}</string>
+                <key>offset</key>
+                <string>{0,3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,0},{30,42}}</string>
+                <key>sourceSize</key>
+                <string>{36,48}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>Runner_Atlas-hd.png</string>
+            <key>size</key>
+            <string>{256,256}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:66a5d072550c9bc50c9b3f9448b404e3$</string>
+            <key>textureFileName</key>
+            <string>Runner_Atlas-hd.png</string>
+        </dict>
+    </dict>
 </plist>

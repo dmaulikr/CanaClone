@@ -128,37 +128,40 @@ static NSArray * windowImages;
 	buildingWidth = maxCol*tileSize;
 	platHeight = pixelHeight;
 
+	int roof = arc4random()%6 + 1;
+	int window = arc4random()%4 + 1;
+	int wall = arc4random()%4 + 1;
 	
 	for (int row = 0; row <= maxRow; row++) {
 		for (int col = 0; col < maxCol; col++) {
 			CCSprite *sprite;
 			if (row == 0) { //for the top of the building
 				if (col == 0) {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-left.png"];
+					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"roof%i-left.png",roof]];
 				}
 				else if (col == maxCol-1) {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-right.png"];
+					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"roof%i-right.png",roof]];
 				}
 				else {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-middle.png"];
+					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"roof%i-middle.png",roof]];
 				}
 			}
 			else if (row%2 == 0 && col > 0 && col < maxCol - 1) { //if in an even row, make it a window
 				if ((col-1)%4 == 0) { //window tex are 4 tiles long
-					sprite = [CCSprite spriteWithSpriteFrameName:@"window2.png"];
+					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"window%i.png",window]];
 				}
 				else
 					continue;
 			}
 			else {
 				if (col == 0) {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-left.png"];
+					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"wall%i-left.png",wall]];
 				}
 				else if (col == maxCol-1) {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-right.png"];
+					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"wall%i-right.png",wall]];
 				}
 				else {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-middle.png"];
+					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"wall%i-middle.png",wall]];
 				}
 			}
 			sprite.anchorPoint = ccp(0.0f, 1.0f);
@@ -167,62 +170,6 @@ static NSArray * windowImages;
 		}
 	}
 }
-
-/*
-- (void)createBuildingsWithCorners:(CGPoint)corners height:(int)height //corners are only x coords
-{
-	int maxRow = height/tileSize;
-	int maxCol = (corners.y-corners.x)/tileSize;
-	for (int row = 0; row <= maxRow; row++) {
-		for (int col = 0; col < maxCol; col++) {
-			CCSprite *sprite;
-			if (row == 0) { //for the top of the building
-				if (col == 0) {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-left.png"];
-				}
-				else if (col == maxCol-1) {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-right.png"];
-				}
-				else {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"roof2-middle.png"];
-				}
-			}
-			else if (row%2 == 0 && col > 0 && col < maxCol - 1) { //if in an even row, make it a window
-				if ((col-1)%4 == 0) { //window tex are 4 tiles long
-					sprite = [CCSprite spriteWithSpriteFrameName:@"window2.png"];
-				}
-				else
-					continue;
-			}
-			else {
-				if (col == 0) {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-left.png"];
-				}
-				else if (col == maxCol-1) {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-right.png"];
-				}
-				else {
-					sprite = [CCSprite spriteWithSpriteFrameName:@"wall2-middle.png"];
-				}
-			}
-			sprite.anchorPoint = ccp(0.0f, 0.0f);
-			[wallBatch addChild:sprite z:20];
-			sprite.position = ccp( corners.x + col * tileSize, maxRow*tileSize - row * tileSize);
-		}
-	}
-	
-}*/
-
-/*
--(void) updatePos:(ccTime)delta
-{
-	for (CCSprite* sprite in parent.children)
-    {
-		CGPoint pos=sprite.position;
-		
-		sprite.position = pos;
-	}
-}*/
 
 - (void)initSpriteLists
 {
@@ -311,7 +258,7 @@ static NSArray * windowImages;
 		
 		[self initSpriteLists];
 		screenSize = [[CCDirector sharedDirector] winSize];
-		tileSize = 32;
+		tileSize = 16;
 		//super.scrollSpeed = 1.0f;
 		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
@@ -332,11 +279,11 @@ static NSArray * windowImages;
 				
 		[self initSpriteLists];
 		screenSize = [[CCDirector sharedDirector] winSize];
-		tileSize = 32;
+		tileSize = 16;
 		//super.scrollSpeed = 1.0f;
 
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
-		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:400];
+		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:550];
 		wallBatch.anchorPoint = ccp(0.0f,0.0f); //anchor on top right
 		
 		[self addChild:wallBatch];

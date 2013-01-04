@@ -10,7 +10,6 @@
 
 @interface Building : CCLayer
 {
-	float gap;	
 	int tileSize;
 	//float scrollSpeed;
 	CCSpriteBatchNode *wallBatch;

@@ -10,14 +10,15 @@
 #import "Building.h"
 
 @interface BuildingsLayer : CCLayer
-{
-	float scrollSpeed;
-	
+{	
 	//Building *building;
 	CGSize screenSize;
 	int runnerXPos;
+	float gap;
 
 }
+
+@property float scrollSpeed;
 
 - (int)updatePos:(ccTime)delta;
 

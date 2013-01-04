@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "BuildingsLayer.h"
 
 @interface GameBGLayer : CCLayer {
     CCSpriteBatchNode *objectSpriteBatchNode;
@@ -15,10 +16,9 @@
 	CGFloat bgWidth;
 	
 	NSMutableArray *speedFactors;
-	float scrollSpeed;
 	
-	CCTMXTiledMap *tileMapNode;
-    CCParallaxNode *parallaxNode;
 }
+
+-(void) update:(ccTime)delta withSpeed:(float)scrollSpeed;
 
 @end
