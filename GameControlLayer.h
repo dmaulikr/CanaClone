@@ -6,13 +6,12 @@
 //  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "BuildingsLayer.h"
 #import "GameBGLayer.h"
 #import "Runner.h"
-#import "SneakyButton.h"
-#import "SneakyButtonSkinnedBase.h"
+#import "PauseLayer.h"
+
 #import "SimpleAudioEngine.h"
 
 @interface GameControlLayer : CCLayer {
@@ -22,9 +21,11 @@
 	BuildingsLayer *buildingsLayer;
 	GameBGLayer *scrollingLayer;
 	
-	SneakyButton *pauseButton;
+	BOOL isPaused;
+	PauseLayer *pauseLayer;
 	
 }
+
 
 
 @end

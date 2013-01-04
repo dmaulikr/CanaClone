@@ -23,8 +23,8 @@
 
 - (void)createBuilding
 {
-	int pixelHeight = arc4random()%100 + 50;
-	int buildingUnitWidth = arc4random()%4 + 3 + (int)scrollSpeed/100;
+	int pixelHeight = arc4random()%70 + 70;
+	int buildingUnitWidth = arc4random()%6 + 3 + (int)scrollSpeed/100;
 	
 	Building *building = [[Building alloc] initWithBUWidth:buildingUnitWidth pixelHeight:pixelHeight];
 	[self addChild:building];
@@ -34,7 +34,7 @@
 - (int)updatePos:(ccTime)delta
 {
 	int lastPlatHeight;
-	gap = arc4random()%100 + scrollSpeed;
+	gap = arc4random()%100 + scrollSpeed * .7;
 	
 	for (Building *building in self.children)
     {
@@ -43,7 +43,7 @@
 			[self removeChild:building cleanup:YES];
 			continue;
 		} else {
-			building.position = ccp(building.position.x - 2 * delta * scrollSpeed, building.position.y);
+			building.position = ccp(building.position.x - 1.5 * delta * scrollSpeed, building.position.y);
 
 			if ( (building.position.x + screenSize.width) < runnerXPos && //100 is runner position
 				(building.position.x + screenSize.width + building.buildingWidth) >  runnerXPos ) //if building is under the dude
@@ -51,7 +51,7 @@
 		}
 		
 		if (building.tag == 666 ) {
-			if (-building.position.x > gap) {
+			if (-building.position.x> gap) {
 				[self createBuilding];
 				building.tag = 555;
 			}

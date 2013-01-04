@@ -21,15 +21,6 @@
 @synthesize fallingAnim;
 
 
--(void)checkAndClampSpritePosition
-{
-    if (self.characterState != kStateJumping) {
-        if ([self position].y > 110.0f)
-            [self setPosition:ccp([self position].x,110.0f)];
-	}
-}
-
-#pragma mark -
 -(void)changeState:(CharacterStates)newState
 {
     [self stopAllActions];
@@ -87,7 +78,7 @@
 		
 		if (isTouched) {
 			[self changeState:kStateJumping];
-			if (velocity.y == 0) velocity.y = 8.5f; //initial jump speed
+			if (velocity.y == 0) velocity.y = 8.0f; //initial jump speed
 			//CCLOG(@"start jump");
 		}
 	}
@@ -119,7 +110,7 @@
 		
 		[self setPosition:ccp(self.position.x, minPos)];
 		
-		if (velocity.y < -14) //if downward speed fast enough, roll animation
+		if (velocity.y < -12) //if downward speed fast enough, roll animation
 			[self changeState:kStateRolling];
 		
 		velocity.y = 0;

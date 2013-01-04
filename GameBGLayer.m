@@ -17,7 +17,7 @@
     CCSprite *bgLayer = [CCSprite spriteWithSpriteFrameName:@"midground1.png"];
 	bgLayer.position = ccp(0,screenSize.height/2-50);
 	[objectSpriteBatchNode addChild:bgLayer z:2];
-	bgWidth = bgLayer.boundingBox.size.width;
+	bgWidth = bgLayer.boundingBox.size.width-1;
 	
 	CCSprite *mgLayer = [CCSprite spriteWithSpriteFrameName:@"background.png"];
 	mgLayer.position = ccp(0,screenSize.height/2+50);
@@ -51,15 +51,15 @@
 	[objectSpriteBatchNode addChild:mgLayer4 z:1];
 	
 	
-	// Set background color to magenta.
+	// Set background color to light gray.
 	CCLayerColor* colorLayer = [CCLayerColor layerWithColor:ccc4(176, 176, 191, 255)];
 	[self addChild:colorLayer z:0];
 	
 	// Initialize the array that contains the scroll factors for individual stripes.
 	speedFactors=[NSMutableArray arrayWithCapacity:3];
-	[speedFactors addObject:[NSNumber numberWithFloat:2.0f]];
-	[speedFactors addObject:[NSNumber numberWithFloat:0.7f]];
-	[speedFactors addObject:[NSNumber numberWithFloat:1.2f]];
+	[speedFactors addObject:[NSNumber numberWithFloat:9.0f]];
+	[speedFactors addObject:[NSNumber numberWithFloat:0.5f]];
+	[speedFactors addObject:[NSNumber numberWithFloat:1.0f]];
 
 }
 

@@ -77,7 +77,8 @@
     if (self = [super init]) {
         //CGSize screenSize = [CCDirector sharedDirector].winSize;
 		
-				
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"run-title.mp3"];
+
         [self displayMainMenu];
         
 	}
