@@ -11,6 +11,9 @@
 #import "BuildingsLayer.h"
 #import "GameBGLayer.h"
 #import "Runner.h"
+#import "SneakyButton.h"
+#import "SneakyButtonSkinnedBase.h"
+#import "SimpleAudioEngine.h"
 
 @interface GameControlLayer : CCLayer {
 	CGPoint acceleration;
@@ -18,6 +21,10 @@
 	Runner *runner;
 	BuildingsLayer *buildingsLayer;
 	GameBGLayer *scrollingLayer;
+	
+	SneakyButton *pauseButton;
+	
 }
+
 
 @end

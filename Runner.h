@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Constants.h"
-#import "SneakyButton.h"
 #import <UIKit/UIKit.h>
 
 
@@ -43,7 +42,7 @@
 @property (copy) NSString * epitaph;
 @property BOOL pause;
 
-//-(void)checkAndClampSpritePosition;
+
 - (void)addYPosition:(CGFloat)yDelta;
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime currentPlatHeight:(int)platHeight;
 

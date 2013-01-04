@@ -12,6 +12,32 @@
 
 @implementation GameControlLayer
 
+
+- (void)initButtons {
+    CGSize screenSize = [CCDirector sharedDirector].winSize;
+	CGRect pauseButtonDimensions = CGRectMake(0, 0, 100, 100);
+	
+	SneakyButtonSkinnedBase *pauseButtonBase = [[SneakyButtonSkinnedBase alloc] init];
+	pauseButtonBase.anchorPoint = ccp(1.0f,0.0f); //top right anchor
+	pauseButtonBase.position = ccp(screenSize.width/2, screenSize.height/2);
+	
+	
+	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
+	CCSpriteBatchNode *buttonBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png"];
+
+	pauseButtonBase.defaultSprite =[CCSprite spriteWithSpriteFrameName:@"pause-button.png"];
+	pauseButtonBase.activatedSprite	= [CCSprite spriteWithSpriteFrameName:@"pause.png"];
+	
+	pauseButton = [[SneakyButton alloc] initWithRect:pauseButtonDimensions];
+	pauseButton.isToggleable = YES;
+	[self addChild:buttonBatch z:200];
+
+	
+	[self addChild:pauseButton z:200];
+
+	
+}
+
 - (void)initRunner {
 
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Runner_Atlas.plist"];
@@ -83,12 +109,12 @@
         // enable touches
         self.isTouchEnabled = YES;
 				
+		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"run.mp3"];
+		
 		[self initBG];
-		
 		[self initRunner];
-		
 		[self initBuildings];
-
+		[self initButtons];
 		[self scheduleUpdate];
 	}
 	return self;
