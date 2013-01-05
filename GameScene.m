@@ -17,6 +17,8 @@
         controlLayer = [GameControlLayer node];
         [self addChild:controlLayer z:2 tag:2];
 		
+		pauseLayer = [PauseLayer node];
+		[self addChild:pauseLayer z:200];
 
 	}
 	return self;

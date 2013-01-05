@@ -24,7 +24,7 @@
 - (void)createBuilding
 {
 	int pixelHeight = arc4random()%70 + 70;
-	int buildingUnitWidth = arc4random()%6 + 3 + (int)scrollSpeed/100;
+	int buildingUnitWidth = arc4random()%8 + 3 + (int)scrollSpeed/80;
 	
 	Building *building = [[Building alloc] initWithBUWidth:buildingUnitWidth pixelHeight:pixelHeight];
 	[self addChild:building];
@@ -33,8 +33,8 @@
 
 - (int)updatePos:(ccTime)delta
 {
-	int lastPlatHeight;
-	gap = arc4random()%100 + scrollSpeed * .7;
+	int lastPlatHeight = -100;
+	gap = arc4random()%90 + scrollSpeed * .6;
 	
 	for (Building *building in self.children)
     {

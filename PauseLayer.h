@@ -7,7 +7,7 @@
 //
 
 #import "CCLayer.h"
-#import "SneakyButton.h"
+#import "cocos2d.h"
 
 @interface PauseLayer : CCLayer
 {
@@ -15,7 +15,5 @@
 }
 
 @property CCSprite *pauseButton;
-
--(BOOL) checkPause;
 
 @end

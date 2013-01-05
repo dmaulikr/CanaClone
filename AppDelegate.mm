@@ -9,7 +9,6 @@
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
-#import "GameManager.h"
 #import "Constants.h"
 
 @implementation AppController
@@ -76,11 +75,6 @@
 	// Assume that PVR images have premultiplied alpha
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 	
-	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	//[director_ pushScene: [IntroLayer scene]];
-	[[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
-	
-	
 	// Create a Navigation Controller with the Director
 	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = YES;
@@ -89,8 +83,12 @@
 //	[window_ addSubview:navController_.view];	// Generates flicker.
 	[window_ setRootViewController:navController_];
 	
+	
 	// make main window visible
 	[window_ makeKeyAndVisible];
+	
+	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
+	[[GameManager sharedGameManager] runSceneWithID:kMainMenuScene];
 	
 	return YES;
 }

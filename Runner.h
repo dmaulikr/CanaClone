@@ -13,19 +13,6 @@
 
 
 @interface Runner : CCSprite {
-	//from canabalt
-	CGFloat jump;
-	CGFloat jumpLimit;
-	BOOL stumble;
-	CGFloat my;
-	CGFloat ft;
-	CGFloat fc;
-	NSArray *feet;
-	NSArray *feetC;
-	BOOL craneFeet;
-	NSString *epitaph;
-	BOOL pause;
-
 	
 	float gravity;
 	CGPoint velocity;
@@ -33,26 +20,20 @@
 	CGPoint maxVelocity;
 	CGFloat minPos;
 	
+	CharacterStates characterState;
+	
+	CCAnimation *runningAnim;
+	CCAnimation *jumpingAnim;
+	CCAnimation *rollingAnim;
+	CCAnimation *fallingAnim;
+	
 }
 
-//from canabalt
-@property CGFloat jumpLimit;
-@property BOOL stumble;
-@property BOOL craneFeet;
-@property (copy) NSString * epitaph;
-@property BOOL pause;
-
-
 - (void)addYPosition:(CGFloat)yDelta;
--(void)updateStateWithDeltaTime:(ccTime)deltaTime currentPlatHeight:(int)platHeight;
+- (void)updateStateWithDeltaTime:(ccTime)deltaTime currentPlatHeight:(int)platHeight;
 
 
-@property (readwrite) CharacterStates characterState;
 
-@property (nonatomic, retain) CCAnimation *runningAnim;
-@property (nonatomic, retain) CCAnimation *jumpingAnim;
-@property (nonatomic, retain) CCAnimation *rollingAnim;
-@property (nonatomic, retain) CCAnimation *fallingAnim;
 
 @property BOOL isTouched;
 

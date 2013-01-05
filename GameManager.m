@@ -75,13 +75,13 @@ static GameManager* _sharedGameManager = nil;
 		return;
 	}
 	
-	if (![[CCDirector sharedDirector] runningScene]) {
+	if (![[CCDirector sharedDirector] runningScene])
 		[[CCDirector sharedDirector] runWithScene:sceneToRun];
-	} else {
+	 else
 		[[CCDirector sharedDirector] replaceScene:sceneToRun];
-	}
 	
-	
+	[[CCDirector sharedDirector] resume];
+
 	
 }
 

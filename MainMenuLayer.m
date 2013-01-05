@@ -8,10 +8,6 @@
 
 #import "MainMenuLayer.h"
 
-@interface MainMenuLayer()
-- (void)displayMainMenu;
-@end
-
 @implementation MainMenuLayer
 
 - (void)showAbout
@@ -35,52 +31,46 @@
 	CCSpriteBatchNode *menuSprites = [CCSpriteBatchNode batchNodeWithFile:@"menu_atlas.png"];
 	
 	//create bg sprite
-	CCSprite *bgSprite = [CCSprite spriteWithSpriteFrameName:@"title.png"];
-	[menuSprites addChild:bgSprite];
-	bgSprite.position = ccp(screenSize.height/2, screenSize.width/2);
+	CCSprite *bgSprite = [CCSprite spriteWithFile:@"title.png"];
+	[self addChild:bgSprite];
+	bgSprite.position = ccp(screenSize.width/2, screenSize.height/2);
 
 	[self addChild:menuSprites];
-	
 	
 	//button sprite
 	CCSprite *menuButtonSprite = [CCSprite spriteWithSpriteFrameName:@"button.png"];
 	CCSprite *aboutButtonSprite = [CCSprite spriteWithSpriteFrameName:@"button.png"];
-
 	
-	CCLabelTTF *playGameLabel = [CCLabelTTF labelWithString:@"PLAY"
+	CCLabelTTF *playGameLabel = [CCLabelTTF labelWithString:@"CANACLONE"
 												   fontName:@"Nokia Cellphone FC"
-												   fontSize:28];
-	playGameLabel.position = ccp(screenSize.height/2, screenSize.width/2);
+												   fontSize:60];
+	playGameLabel.position = ccp(screenSize.width/2, screenSize.height/2+20);
 	[self addChild:playGameLabel];
-	
 	
 	//create menu 
 	CCMenuItemSprite *playGameButton = [CCMenuItemSprite itemWithNormalSprite:menuButtonSprite
 															   selectedSprite:nil
 																	   target:self
 																	 selector:@selector(playGame)];
+
 	CCMenuItemSprite *aboutButton = [CCMenuItemSprite itemWithNormalSprite:aboutButtonSprite
 															selectedSprite:nil
 																	target:self
 																  selector:@selector(showAbout)];
 	
 	mainMenu = [CCMenu menuWithItems:aboutButton, playGameButton, nil];
-	[mainMenu alignItemsHorizontallyWithPadding:screenSize.height * 0.059f];
-	mainMenu.position = ccp(screenSize.height/2, screenSize.width - 20);
+	[mainMenu alignItemsHorizontallyWithPadding:30];
+	mainMenu.position = ccp(screenSize.width/2, 40);
 	
 	[self addChild:mainMenu z:0 tag:kMainMenuTagValue];
-
 	
 }
 
 -(id)init {
     if (self = [super init]) {
-        //CGSize screenSize = [CCDirector sharedDirector].winSize;
-		
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"run-title.mp3"];
 
         [self displayMainMenu];
-        
 	}
     return self;
 }

@@ -288,7 +288,7 @@ static NSArray * windowImages;
 		
 		[self addChild:wallBatch];
 		
-		[self createBuildingWithBUWidth:8 pixelHeight:100 atX:24]; //makes screenlong platform
+		[self createBuildingWithBUWidth:8 pixelHeight:200 atX:24]; //makes screenlong platform
 	}
 	return self;
 }

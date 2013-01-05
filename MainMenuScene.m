@@ -14,7 +14,7 @@
 {
 	if (self = [super init]) {
 		mainMenuLayer = [MainMenuLayer node];
-		[self addChild:mainMenuLayer];
+		[self addChild:mainMenuLayer z:1];
 	}
 	return self;
 }

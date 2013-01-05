@@ -11,15 +11,7 @@
 
 @implementation Runner
 
-@synthesize characterState;
-
 @synthesize isTouched;
-
-@synthesize runningAnim;
-@synthesize jumpingAnim;
-@synthesize rollingAnim;
-@synthesize fallingAnim;
-
 
 -(void)changeState:(CharacterStates)newState
 {
@@ -27,7 +19,7 @@
     id action = nil;
     //id movementAction = nil;
     //CGPoint newPosition;
-    [self setCharacterState:newState];
+    characterState = newState;
 	
     switch (newState) {
         case kStateRunning:
@@ -73,8 +65,8 @@
 	minPos = platHeight;
 	
 	
-	if ((self.characterState == kStateRunning) ||
-		(self.characterState == kStateRolling)) {
+	if ((characterState == kStateRunning) ||
+		(characterState == kStateRolling)) {
 		
 		if (isTouched) {
 			[self changeState:kStateJumping];
@@ -124,24 +116,6 @@
 	}
 	
 	
-	
-	
-	//horizontal movement-----------------------------
-	
-	//walldeath
-	if (acceleration.x <= 0)
-		//return [super update];
-	
-	//speed & acceleration
-	if (velocity.x < 0) velocity.x = 0;
-	else if (velocity.x < 100) acceleration.x = 60;
-	else if (velocity.x < 250) acceleration.x = 36;
-	else if (velocity.x < 400) acceleration.x = 24;
-	else if (velocity.x < 600) acceleration.x = 12;
-	else acceleration.x = 4;
-	
-	
-	
 
 }
 
@@ -151,14 +125,14 @@
 }
 	
 - (void)initAnimations {
-	[self setRunningAnim:[self loadPlistForAnimationWithName:@"runningAnim"
-												andClassName:NSStringFromClass([self class])]];
-	[self setJumpingAnim:[self loadPlistForAnimationWithName:@"jumpingAnim"
-												andClassName:NSStringFromClass([self class])]];
-	[self setFallingAnim:[self loadPlistForAnimationWithName:@"fallingAnim"
-												andClassName:NSStringFromClass([self class])]];
-    [self setRollingAnim:[self loadPlistForAnimationWithName:@"rollingAnim"
-												andClassName:NSStringFromClass([self class])]];
+	runningAnim = [self loadPlistForAnimationWithName:@"runningAnim"
+												andClassName:NSStringFromClass([self class])];
+	jumpingAnim = [self loadPlistForAnimationWithName:@"jumpingAnim"
+												andClassName:NSStringFromClass([self class])];
+	fallingAnim = [self loadPlistForAnimationWithName:@"fallingAnim"
+												andClassName:NSStringFromClass([self class])];
+    rollingAnim = [self loadPlistForAnimationWithName:@"rollingAnim"
+												andClassName:NSStringFromClass([self class])];
 }
 
 -(CCAnimation*)loadPlistForAnimationWithName:(NSString*)animationName

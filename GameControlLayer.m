@@ -12,20 +12,11 @@
 
 @implementation GameControlLayer
 
-
-- (void)initPauseLayer  {
-
-	
-	pauseLayer = [[PauseLayer alloc] init];
-	[self addChild:pauseLayer z:200];
-	
-}
-
 - (void)initRunner {
 
 	[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Runner_Atlas.plist"];
 	CCSpriteBatchNode *runnerBatch = [CCSpriteBatchNode batchNodeWithFile:@"Runner_Atlas.png"];
-	[self addChild:runnerBatch z:100];
+	[self addChild:runnerBatch z:10];
 	
 	runner = [[Runner alloc] initWithSpriteFrame:[[CCSpriteFrameCache
 														   sharedSpriteFrameCache]
@@ -41,7 +32,7 @@
 - (void)initBuildings
 {
 	buildingsLayer = [BuildingsLayer node];
-	[self addChild:buildingsLayer z:90];
+	[self addChild:buildingsLayer z:5];
 }
 
 - (void)initBG
@@ -51,8 +42,17 @@
 	[self addChild:scrollingLayer z:1 tag:1];
 }
 
+- (void)initDeathScreen
+{
+	DeathLayer *deathLayer = [DeathLayer node];
+	[self addChild:deathLayer z:20];
+}
+
 -(void) update:(ccTime)deltaTime
 {
+	//death
+	if (runner.position.y < -20) [self initDeathScreen];
+	
 	//slowly increases speed
 	int xVel = buildingsLayer.scrollSpeed;
 	
@@ -69,15 +69,13 @@
 	int currentHeight = [buildingsLayer updatePos:deltaTime];
 	
 	if (currentHeight > 300) //since initial building will be set to over 30k
-		currentHeight = -10;
+		currentHeight = -50;
 
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
 }
 
 -(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	
 	runner.isTouched = YES;
-	
 }
 
 - (void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -93,10 +91,10 @@
 				
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"run.mp3"];
 		
+		
 		[self initBG];
 		[self initRunner];
 		[self initBuildings];
-		[self initPauseLayer];
 		[self scheduleUpdate];
 	}
 	return self;

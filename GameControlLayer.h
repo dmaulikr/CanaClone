@@ -11,6 +11,7 @@
 #import "GameBGLayer.h"
 #import "Runner.h"
 #import "PauseLayer.h"
+#import "DeathLayer.h"
 
 #import "SimpleAudioEngine.h"
 
@@ -22,10 +23,7 @@
 	GameBGLayer *scrollingLayer;
 	
 	BOOL isPaused;
-	PauseLayer *pauseLayer;
 	
 }
-
-
 
 @end
