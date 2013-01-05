@@ -109,146 +109,259 @@ static NSArray * rightRoofsCracked;
 
 static NSArray * windowImages;
 
+
+
+
+
+static NSString * ImgBillboardTopMiddle = @"billboard_top-middle.png";
+static NSString * ImgBillboardTopLeft = @"billboard_top-left.png";
+static NSString * ImgBillboardTopRight = @"billboard_top-right.png";
+
+static NSString * ImgBillboardMiddleLeft = @"billboard_middle-left.png";
+static NSString * ImgBillboardMiddleRight = @"billboard_middle-right.png";
+static NSString * ImgBillboardMiddleMiddle = @"billboard_middle-middle.png";
+
+
+static NSString * ImgBillboardBottomMiddle = @"billboard_bottom-middle.png";
+static NSString * ImgBillboardBottomLeft = @"billboard_bottom-left.png";
+static NSString * ImgBillboardBottomRight = @"billboard_bottom-right.png";
+
+static NSString * ImgBillboardCatwalkMiddle = @"billboard_catwalk-middle.png";
+static NSString * ImgBillboardCatwalkLeft = @"billboard_catwalk-left.png";
+static NSString * ImgBillboardCatwalkRight = @"billboard_catwalk-right.png";
+//static NSString * ImgBillboardPost = @"billboard_post.png";
+static NSString * ImgBillboardPost2 = @"billboard_post2.png";
+static NSString * ImgBillboardDmg1 = @"billboard_dmg1.png";
+static NSString * ImgBillboardDmg2 = @"billboard_dmg2.png";
+static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
+
+
+
 @implementation Building
 
 @synthesize buildingWidth;
 @synthesize platHeight;
 
-- (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight
+- (void)initSpriteLists
 {
-	[self createBuildingWithBUWidth:BUWidth pixelHeight:pixelHeight atX:screenSize.width];
+	leftWalls = @[ImgWall1Left,
+	ImgWall2Left,
+	ImgWall3Left,
+	ImgWall4Left];
+	rightWalls = @[ImgWall1Right,
+	ImgWall2Right,
+	ImgWall3Right,
+	ImgWall4Right];
+	middleWalls = @[ImgWall1Middle,
+	ImgWall2Middle,
+	ImgWall3Middle,
+	ImgWall4Middle];
+	leftWallsCracked = @[ImgWall1LeftCracked,
+	ImgWall2LeftCracked,
+	ImgWall3LeftCracked,
+	ImgWall4LeftCracked];
+	rightWallsCracked = @[ImgWall1RightCracked,
+	ImgWall2RightCracked,
+	ImgWall3RightCracked,
+	ImgWall4RightCracked];
+	middleWallsCracked = @[ImgWall1MiddleCracked,
+	ImgWall2MiddleCracked,
+	ImgWall3MiddleCracked,
+	ImgWall4MiddleCracked];
+	
+	leftFloors = @[ImgFloor1Left,
+	ImgFloor2Left];
+	middleFloors = @[ImgFloor1Middle,
+	ImgFloor2Middle];
+	rightFloors = @[ImgFloor1Right,
+	ImgFloor2Right];
+	
+	leftRoofs = @[ImgRoof1Left,
+	ImgRoof2Left,
+	ImgRoof3Left,
+	ImgRoof4Left,
+	ImgRoof5Left,
+	ImgRoof6Left];
+	middleRoofs = @[ImgRoof1Middle,
+	ImgRoof2Middle,
+	ImgRoof3Middle,
+	ImgRoof4Middle,
+	ImgRoof5Middle,
+	ImgRoof6Middle];
+	rightRoofs = @[ImgRoof1Right,
+	ImgRoof2Right,
+	ImgRoof3Right,
+	ImgRoof4Right,
+	ImgRoof5Right,
+	ImgRoof6Right];
+	
+	leftRoofsCracked = @[ImgRoof1LeftCracked,
+	ImgRoof2LeftCracked,
+	ImgRoof3LeftCracked,
+	ImgRoof4LeftCracked,
+	ImgRoof5LeftCracked,
+	ImgRoof6LeftCracked];
+	middleRoofsCracked = @[ImgRoof1MiddleCracked,
+	ImgRoof2MiddleCracked,
+	ImgRoof3MiddleCracked,
+	ImgRoof4MiddleCracked,
+	ImgRoof5MiddleCracked,
+	ImgRoof6MiddleCracked];
+	rightRoofsCracked = @[ImgRoof1RightCracked,
+	ImgRoof2RightCracked,
+	ImgRoof3RightCracked,
+	ImgRoof4RightCracked,
+	ImgRoof5RightCracked,
+	ImgRoof6RightCracked];
+	
+	windowImages = @[ImgWindow1,
+	ImgWindow2,
+	ImgWindow3,
+	ImgWindow4];
 }
 
-- (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight atX:(int)xValue
-{	
+- (void)createBillboardWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight
+{
+	wallBatch.anchorPoint = ccp(0.0f,1.0f);
+
+	int maxRow = pixelHeight/tileSize;
+	int maxCol = BUWidth*2 - 6; //must be even number since some sprites are double sized
 	
+	buildingWidth = maxCol*tileSize + tileSize;
+	platHeight = pixelHeight+tileSize;
+
+	
+	for (int row = 0; row <= maxRow; row++) { //draw billboard from bottom up instead
+		for (int col = 0; col < maxCol; col++) {
+			CCSprite *sprite;
+			if (row == 0) { //for the bottom of billboard
+				if (col == 0) {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardCatwalkLeft];
+				}
+				else if (col == maxCol-1) {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardCatwalkRight];
+				}
+				else {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardCatwalkMiddle]; //extra stuff since middle piece is 3px shorter
+					sprite.anchorPoint = ccp(0.0f, 0.0f);
+					[wallBatch addChild:sprite z:20];
+					sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight + row * tileSize + 3);
+					continue;
+
+				}
+			}
+			else if (row == 1) {
+				if (col == 0) {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardBottomLeft];
+					sprite.anchorPoint = ccp(0.0f, 0.0f);
+					[wallBatch addChild:sprite z:20];
+					sprite.position = ccp(screenSize.width + col * tileSize+1, pixelHeight + row * tileSize);
+					continue;
+				}
+				else if (col == maxCol-2) {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardBottomRight];
+				}
+				else if (col%2==0){
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardBottomMiddle];
+				}
+				else
+					continue;
+			}
+			else if (row == maxRow) {
+				if (col == 0) {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardTopLeft];
+					sprite.anchorPoint = ccp(0.0f, 0.0f);
+					[wallBatch addChild:sprite z:20];
+					sprite.position = ccp(screenSize.width + col * tileSize+1, pixelHeight + row * tileSize);
+					continue;
+				}
+				else if (col == maxCol-2) {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardTopRight];
+				}
+				else if (col%2==0){
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardTopMiddle];
+				}
+				else
+					continue;
+			}
+			else if ((row+1)%2 == 0) {
+				if (col == 0) {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardMiddleLeft];
+				}
+				else if (col == maxCol-2) {
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardMiddleRight];
+				}
+				else if (col%2==0){
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardMiddleMiddle];
+				}
+				else
+					continue;
+			}
+			else
+				continue;
+			sprite.anchorPoint = ccp(0.0f, 0.0f);
+			[wallBatch addChild:sprite z:20];
+			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight + row * tileSize);
+
+
+
+		}
+	}
+}
+
+
+- (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight
+{
+	wallBatch.anchorPoint = ccp(0.0f,0.0f);
+
 	int maxRow = pixelHeight/tileSize + 1;
 	int maxCol = BUWidth*4 +2; //windows + edges
 	
-	buildingWidth = maxCol*tileSize;
-	platHeight = pixelHeight;
-
-	int roof = arc4random()%6 + 1;
-	int window = arc4random()%4 + 1;
-	int wall = arc4random()%4 + 1;
+	buildingWidth = maxCol*tileSize+tileSize;
+	platHeight = pixelHeight;	
+	
+	int roof = arc4random()%6;
+	int window = arc4random()%4;
+	int wall = arc4random()%4;
 	
 	for (int row = 0; row <= maxRow; row++) {
 		for (int col = 0; col < maxCol; col++) {
 			CCSprite *sprite;
 			if (row == 0) { //for the top of the building
 				if (col == 0) {
-					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"roof%i-left.png",roof]];
+					sprite = [CCSprite spriteWithSpriteFrameName:leftRoofs[roof]];
 				}
 				else if (col == maxCol-1) {
-					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"roof%i-right.png",roof]];
+					sprite = [CCSprite spriteWithSpriteFrameName:rightRoofs[roof]];
 				}
 				else {
-					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"roof%i-middle.png",roof]];
+					sprite = [CCSprite spriteWithSpriteFrameName:middleRoofs[roof]];
 				}
 			}
 			else if (row%2 == 0 && col > 0 && col < maxCol - 1) { //if in an even row, make it a window
 				if ((col-1)%4 == 0) { //window tex are 4 tiles long
-					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"window%i.png",window]];
+					sprite = [CCSprite spriteWithSpriteFrameName:windowImages[window]];
 				}
 				else
 					continue;
 			}
 			else {
 				if (col == 0) {
-					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"wall%i-left.png",wall]];
+					sprite = [CCSprite spriteWithSpriteFrameName:leftWalls[wall]];
 				}
 				else if (col == maxCol-1) {
-					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"wall%i-right.png",wall]];
+					sprite = [CCSprite spriteWithSpriteFrameName:rightWalls[wall]];
 				}
 				else {
-					sprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"wall%i-middle.png",wall]];
+					sprite = [CCSprite spriteWithSpriteFrameName:middleWalls[wall]];
 				}
 			}
 			sprite.anchorPoint = ccp(0.0f, 1.0f);
 			[wallBatch addChild:sprite z:20];
-			sprite.position = ccp(xValue + col * tileSize, pixelHeight - row * tileSize);
+			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight - row * tileSize);
 		}
 	}
 }
-
-- (void)initSpriteLists
-{
-	leftWalls = @[ImgWall1Left,
-					 ImgWall2Left,
-					 ImgWall3Left,
-					 ImgWall4Left];
-	rightWalls = @[ImgWall1Right,
-				  ImgWall2Right,
-				  ImgWall3Right,
-				  ImgWall4Right];
-	middleWalls = @[ImgWall1Middle,
-				   ImgWall2Middle,
-				   ImgWall3Middle,
-				   ImgWall4Middle];
-	leftWallsCracked = @[ImgWall1LeftCracked,
-						ImgWall2LeftCracked,
-						ImgWall3LeftCracked,
-						ImgWall4LeftCracked];
-	rightWallsCracked = @[ImgWall1RightCracked,
-						 ImgWall2RightCracked,
-						 ImgWall3RightCracked,
-						 ImgWall4RightCracked];
-	middleWallsCracked = @[ImgWall1MiddleCracked,
-						  ImgWall2MiddleCracked,
-						  ImgWall3MiddleCracked,
-						  ImgWall4MiddleCracked];
-	
-	leftFloors = @[ImgFloor1Left,
-				  ImgFloor2Left];
-	middleFloors = @[ImgFloor1Middle,
-					ImgFloor2Middle];
-	rightFloors = @[ImgFloor1Right,
-				   ImgFloor2Right];
-	
-	leftRoofs = @[ImgRoof1Left,
-				 ImgRoof2Left,
-				 ImgRoof3Left,
-				 ImgRoof4Left,
-				 ImgRoof5Left,
-				 ImgRoof6Left];
-	middleRoofs = @[ImgRoof1Middle,
-				   ImgRoof2Middle,
-				   ImgRoof3Middle,
-				   ImgRoof4Middle,
-				   ImgRoof5Middle,
-				   ImgRoof6Middle];
-	rightRoofs = @[ImgRoof1Right,
-				  ImgRoof2Right,
-				  ImgRoof3Right,
-				  ImgRoof4Right,
-				  ImgRoof5Right,
-				  ImgRoof6Right];
-	
-	leftRoofsCracked = @[ImgRoof1LeftCracked,
-						ImgRoof2LeftCracked,
-						ImgRoof3LeftCracked,
-						ImgRoof4LeftCracked,
-						ImgRoof5LeftCracked,
-						ImgRoof6LeftCracked];
-	middleRoofsCracked = @[ImgRoof1MiddleCracked,
-						  ImgRoof2MiddleCracked,
-						  ImgRoof3MiddleCracked,
-						  ImgRoof4MiddleCracked,
-						  ImgRoof5MiddleCracked,
-						  ImgRoof6MiddleCracked];
-	rightRoofsCracked = @[ImgRoof1RightCracked,
-						 ImgRoof2RightCracked,
-						 ImgRoof3RightCracked,
-						 ImgRoof4RightCracked,
-						 ImgRoof5RightCracked,
-						 ImgRoof6RightCracked];
-	
-	windowImages = @[ImgWindow1,
-					ImgWindow2,
-					ImgWindow3,
-					ImgWindow4];
-}
-
 
 - (id)initWithBUWidth:(int)BUWidth
 		  pixelHeight:(int)pixelHeight
@@ -262,11 +375,22 @@ static NSArray * windowImages;
 		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
 		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:750];
-		wallBatch.anchorPoint = ccp(0.0f,0.0f);
 		
 		[self addChild:wallBatch];
 		
-		[self createBuildingWithBUWidth:BUWidth pixelHeight:pixelHeight];
+		
+		int buildingType = arc4random()%2;
+		switch (buildingType) {
+			case 0:
+				[self createBuildingWithBUWidth:BUWidth pixelHeight:pixelHeight];
+				break;
+			case 1:
+				[self createBillboardWithBUWidth:BUWidth pixelHeight:pixelHeight];
+				
+			default:
+				CCLOG(@"invalid building type dood");
+				break;
+		}
 		
 	}
 	return self;

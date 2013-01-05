@@ -23,7 +23,7 @@
 														  spriteFrameByName:@"runner_1.png"]];
 	
 	runner.anchorPoint = ccp(1.0f, 0.0);
-	[runner setPosition:ccp(runnerXPos, 200)];
+	[runner setPosition:ccp(runnerXPos, 220)];
 	
 	[runnerBatch addChild:runner];
 }
@@ -77,13 +77,13 @@
 	int currentHeight = [buildingsLayer updatePos:deltaTime];
 	
 	//walldeath
-	if (currentHeight > runner.position.y) {
+	if (currentHeight > runner.position.y+1) {
 		buildingsLayer.scrollSpeed = 0;
 		currentHeight = -100;
 	}
 	
 	//if (buildingsLayer.scrollSpeed > 150)
-		[scrollingLayer update:deltaTime withSpeed:buildingsLayer.scrollSpeed];
+	[scrollingLayer update:deltaTime withSpeed:buildingsLayer.scrollSpeed];
 
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
 }
