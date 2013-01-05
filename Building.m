@@ -250,7 +250,6 @@ static NSArray * windowImages;
 }
 
 
-
 - (id)initWithBUWidth:(int)BUWidth
 		  pixelHeight:(int)pixelHeight
 {
@@ -269,26 +268,6 @@ static NSArray * windowImages;
 		
 		[self createBuildingWithBUWidth:BUWidth pixelHeight:pixelHeight];
 		
-	}
-	return self;
-}
-
-- (id)init
-{
-	if (self = [super init]) {
-				
-		[self initSpriteLists];
-		screenSize = [[CCDirector sharedDirector] winSize];
-		tileSize = 16;
-		//super.scrollSpeed = 1.0f;
-
-		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
-		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:550];
-		wallBatch.anchorPoint = ccp(0.0f,0.0f); //anchor on top right
-		
-		[self addChild:wallBatch];
-		
-		[self createBuildingWithBUWidth:8 pixelHeight:200 atX:24]; //makes screenlong platform
 	}
 	return self;
 }

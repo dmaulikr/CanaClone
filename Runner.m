@@ -26,17 +26,6 @@
 			action = [CCAnimate actionWithAnimation:runningAnim];
 			break;
 		case kStateJumping:
-			/*newPosition = ccp([super screenSize].width * 0.2f, 0.0f);
-
-			movementAction = [CCJumpBy actionWithDuration:0.9f
-												 position:newPosition
-												   height:100.0f
-													jumps:1];
-			action = [CCSequence actions: [CCSpawn actions: [CCAnimate actionWithAnimation:jumpingAnim],
-											 movementAction,
-											 nil],
-					  [CCAnimate actionWithAnimation:fallingAnim],
-					  [CCAnimate actionWithAnimation:rollingAnim],nil];*/
 			action = [CCAnimate actionWithAnimation:jumpingAnim];
 			break;
 		case kStateFalling:
@@ -70,22 +59,18 @@
 		
 		if (isTouched) {
 			[self changeState:kStateJumping];
-			if (velocity.y == 0) velocity.y = 8.0f; //initial jump speed
+			if (velocity.y == 0) velocity.y = 6.5f; //initial jump speed
 			//CCLOG(@"start jump");
 		}
 	}
 	if (velocity.y > 5 && isTouched) { //if in process of jumping but below max speed
-		if ([self numberOfRunningActions] == 0)
-			[self changeState:kStateJumping];
-		velocity.y += 0.20f;
+		velocity.y += 0.35f;
 	}
 	if (self.position.y > minPos) {  //if above platform level
 		velocity.y += gravity; //apply gravity
-		
-		if (velocity.y < 6) {
-			if ([self numberOfRunningActions] == 0) //fall action if below certain speed
-				[self changeState:kStateFalling];
-		}
+
+		if ([self numberOfRunningActions] == 0)
+			[self changeState:kStateFalling];
 	}
 
 	[self addYPosition:velocity.y * deltaTime * 50];

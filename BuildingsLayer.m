@@ -16,8 +16,9 @@
 
 - (void)createFirstBuilding
 {
-	Building *firstBuilding = [Building node];
-	firstBuilding.tag = 666;
+	Building *firstBuilding = [[Building alloc] initWithBUWidth:15 pixelHeight:200];
+
+	firstBuilding.position = ccp(firstBuilding.position.x-600,firstBuilding.position.y);
 	[self addChild:firstBuilding];
 }
 
@@ -48,14 +49,6 @@
 			if ( (building.position.x + screenSize.width) < runnerXPos && //100 is runner position
 				(building.position.x + screenSize.width + building.buildingWidth) >  runnerXPos ) //if building is under the dude
 					lastPlatHeight = building.platHeight;
-		}
-		
-		if (building.tag == 666 ) {
-			if (-building.position.x> gap) {
-				[self createBuilding];
-				building.tag = 555;
-			}
-			break;
 		}
 	}
 	
