@@ -58,12 +58,12 @@
 		
 		if (isTouched) {
 			[self changeState:kStateJumping];
-			if (velocity.y == 0) velocity.y = 6.5f; //initial jump speed
+			if (velocity.y == 0) velocity.y = 4.5f; //initial jump speed
 			//CCLOG(@"start jump");
 		}
 	}
-	if (velocity.y > 5 && isTouched) { //if in process of jumping but below max speed
-		velocity.y += 0.35f;
+	if (velocity.y > 3.2 && isTouched) { //if in process of jumping but below max speed
+		velocity.y += 0.40f;
 	}
 	if (self.position.y > minPos) {  //if above platform level
 		velocity.y += gravity; //apply gravity

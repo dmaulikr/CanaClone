@@ -247,16 +247,11 @@ static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 					[wallBatch addChild:sprite z:20];
 					sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight + row * tileSize + 3);
 					continue;
-
 				}
 			}
 			else if (row == 1) {
 				if (col == 0) {
 					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardBottomLeft];
-					sprite.anchorPoint = ccp(0.0f, 0.0f);
-					[wallBatch addChild:sprite z:20];
-					sprite.position = ccp(screenSize.width + col * tileSize+1, pixelHeight + row * tileSize);
-					continue;
 				}
 				else if (col == maxCol-2) {
 					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardBottomRight];
@@ -270,10 +265,6 @@ static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 			else if (row == maxRow) {
 				if (col == 0) {
 					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardTopLeft];
-					sprite.anchorPoint = ccp(0.0f, 0.0f);
-					[wallBatch addChild:sprite z:20];
-					sprite.position = ccp(screenSize.width + col * tileSize+1, pixelHeight + row * tileSize);
-					continue;
 				}
 				else if (col == maxCol-2) {
 					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardTopRight];
@@ -302,10 +293,22 @@ static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 			sprite.anchorPoint = ccp(0.0f, 0.0f);
 			[wallBatch addChild:sprite z:20];
 			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight + row * tileSize);
-
-
-
 		}
+	}
+	
+	//draw the post
+	for (int i = 0; i <= maxRow+1; i++) {
+		CCSprite *sprite;
+		if (i == 0) {
+			sprite = [CCSprite spriteWithSpriteFrameName:@"billboard_post2.png"];
+		}
+		else if ((i+1)%2 == 0) //this is double height sprite
+			sprite = [CCSprite spriteWithSpriteFrameName:@"billboard_post.png"];
+		else
+			continue;
+		sprite.anchorPoint = ccp(0.5f,1.0f);
+		[wallBatch addChild:sprite z:10];
+		sprite.position = ccp(screenSize.width + maxCol/2 * tileSize, pixelHeight - i * tileSize + 8);
 	}
 }
 
@@ -379,18 +382,11 @@ static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 		[self addChild:wallBatch];
 		
 		
-		int buildingType = arc4random()%2;
-		switch (buildingType) {
-			case 0:
+		int buildingType = arc4random();
+		if (buildingType > 0.5)
 				[self createBuildingWithBUWidth:BUWidth pixelHeight:pixelHeight];
-				break;
-			case 1:
+		else if (buildingType < 0.5)
 				[self createBillboardWithBUWidth:BUWidth pixelHeight:pixelHeight];
-				
-			default:
-				CCLOG(@"invalid building type dood");
-				break;
-		}
 		
 	}
 	return self;
