@@ -13,7 +13,6 @@
 @interface GameScene : CCScene
 {
 	GameControlLayer *controlLayer;
-	PauseLayer *pauseLayer;
 }
 
 @end

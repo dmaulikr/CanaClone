@@ -22,16 +22,22 @@
 														   sharedSpriteFrameCache]
 														  spriteFrameByName:@"runner_1.png"]];
 	
-	runner.anchorPoint = ccp(0.5f, 0.0);
-	[runner setPosition:ccp(100, 200)];
+	runner.anchorPoint = ccp(1.0f, 0.0);
+	[runner setPosition:ccp(runnerXPos, 200)];
 	
 	[runnerBatch addChild:runner];
-	
+}
+
+- (void)initPauseLayer
+{
+	pauseLayer = [PauseLayer node];
+	[self addChild:pauseLayer z:200];
+
 }
 
 - (void)initBuildings
 {
-	buildingsLayer = [BuildingsLayer node];
+	buildingsLayer = [[BuildingsLayer alloc] initWithRunnerXPos:runnerXPos];
 	[self addChild:buildingsLayer z:5];
 }
 
@@ -50,26 +56,34 @@
 
 -(void) update:(ccTime)deltaTime
 {
-	//death
-	if (runner.position.y < -20) [self initDeathScreen];
+	//fall
+	if (runner.position.y < -20) {
+		[self removeChild:pauseLayer cleanup:YES];
+		[self initDeathScreen];
+	}
 	
 	//slowly increases speed
 	int xVel = buildingsLayer.scrollSpeed;
 	
-	if (xVel < 100) acceleration.x = 6;
-	else if (xVel < 250) acceleration.x = 4;
-	else if	(xVel < 400) acceleration.x = 3;
-	else if (xVel < 600) acceleration.x = 2;
-	else acceleration.x = 1;
+	if (xVel < 150) acceleration.x = 11;
+	else if (xVel < 375) acceleration.x = 7;
+	else if	(xVel < 600) acceleration.x = 5;
+	else if (xVel < 900) acceleration.x = 3;
+	else acceleration.x = 1.5;
 	
 	buildingsLayer.scrollSpeed += acceleration.x * deltaTime;
-	if (buildingsLayer.scrollSpeed > 1000) buildingsLayer.scrollSpeed = 1000;
+	if (buildingsLayer.scrollSpeed > 1500) buildingsLayer.scrollSpeed = 1500;
 	
-	[scrollingLayer update:deltaTime withSpeed:buildingsLayer.scrollSpeed];
 	int currentHeight = [buildingsLayer updatePos:deltaTime];
 	
-	if (currentHeight > 300) //since initial building will be set to over 30k
-		currentHeight = -50;
+	//walldeath
+	if (currentHeight > runner.position.y) {
+		buildingsLayer.scrollSpeed = 0;
+		currentHeight = -100;
+	}
+	
+	//if (buildingsLayer.scrollSpeed > 150)
+		[scrollingLayer update:deltaTime withSpeed:buildingsLayer.scrollSpeed];
 
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
 }
@@ -89,10 +103,13 @@
         // enable touches
         self.isTouchEnabled = YES;
 				
+		runnerXPos = 200;
+		
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"run.mp3"];
 		
 		
 		[self initBG];
+		[self initPauseLayer];
 		[self initRunner];
 		[self initBuildings];
 		[self scheduleUpdate];

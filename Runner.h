@@ -32,9 +32,6 @@
 - (void)addYPosition:(CGFloat)yDelta;
 - (void)updateStateWithDeltaTime:(ccTime)deltaTime currentPlatHeight:(int)platHeight;
 
-
-
-
 @property BOOL isTouched;
 
 @end

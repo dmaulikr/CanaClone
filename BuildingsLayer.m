@@ -35,19 +35,18 @@
 - (int)updatePos:(ccTime)delta
 {
 	int lastPlatHeight = -100;
-	gap = arc4random()%90 + scrollSpeed * .6;
+	gap = arc4random()%90 + scrollSpeed * .5;
 	
 	for (Building *building in self.children)
     {
 		if ((building.position.x + building.buildingWidth) < -screenSize.width) { //if off the screen
-			//CCLOG(@"posx: %f, width: %i, screenw: %f",building.position.x, building.buildingWidth, screenSize.width);
 			[self removeChild:building cleanup:YES];
 			continue;
 		} else {
-			building.position = ccp(building.position.x - 1.5 * delta * scrollSpeed, building.position.y);
+			building.position = ccp(building.position.x - delta * scrollSpeed, building.position.y);
 
-			if ( (building.position.x + screenSize.width) < runnerXPos && //100 is runner position
-				(building.position.x + screenSize.width + building.buildingWidth) >  runnerXPos ) //if building is under the dude
+			if ( (building.position.x + screenSize.width) < refXPos && //100 is runner position
+				(building.position.x + screenSize.width + building.buildingWidth) >  refXPos ) //if building is under the dude
 					lastPlatHeight = building.platHeight;
 		}
 	}
@@ -64,13 +63,13 @@
 	return lastPlatHeight-1;
 }
 
-- (id)init
+- (id)initWithRunnerXPos:(int)runnerXPos
 {
 	if (self = [super init]) {
 		
 		screenSize = [[CCDirector sharedDirector] winSize];
-		runnerXPos = 100;
-		scrollSpeed = 125.0f;
+		refXPos = runnerXPos;
+		scrollSpeed = 150.0f;
 
 		[self createFirstBuilding];
 		

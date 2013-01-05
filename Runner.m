@@ -53,7 +53,6 @@
 {
 	minPos = platHeight;
 	
-	
 	if ((characterState == kStateRunning) ||
 		(characterState == kStateRolling)) {
 		
@@ -81,7 +80,6 @@
 	}
 	
 	
-	
 	if (self.position.y < minPos) { //if below platform level
 		[self stopAllActions];
 		
@@ -92,15 +90,11 @@
 		
 		velocity.y = 0;
 	}
-	
-	//CCLOG(@"vel:%f", velocity.y);
-	
+		
 	if ([self numberOfRunningActions] == 0) {
 		if (self.position.y == minPos)
 			[self changeState:kStateRunning];
 	}
-	
-	
 
 }
 

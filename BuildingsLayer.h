@@ -13,7 +13,7 @@
 {	
 	//Building *building;
 	CGSize screenSize;
-	int runnerXPos;
+	int refXPos;
 	float gap;
 
 }
@@ -21,5 +21,6 @@
 @property float scrollSpeed;
 
 - (int)updatePos:(ccTime)delta;
+- (id)initWithRunnerXPos:(int)runnerXPos;
 
 @end

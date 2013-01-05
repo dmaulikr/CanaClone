@@ -261,7 +261,7 @@ static NSArray * windowImages;
 		//super.scrollSpeed = 1.0f;
 		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
-		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:550];
+		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:750];
 		wallBatch.anchorPoint = ccp(0.0f,0.0f);
 		
 		[self addChild:wallBatch];

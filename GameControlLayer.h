@@ -17,10 +17,13 @@
 
 @interface GameControlLayer : CCLayer {
 	CGPoint acceleration;
+	int runnerXPos;
 
 	Runner *runner;
 	BuildingsLayer *buildingsLayer;
 	GameBGLayer *scrollingLayer;
+	PauseLayer *pauseLayer;
+
 	
 	BOOL isPaused;
 	
