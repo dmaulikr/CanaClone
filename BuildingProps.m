@@ -10,4 +10,8 @@
 
 @implementation BuildingProps
 
+
+
+
+
 @end
