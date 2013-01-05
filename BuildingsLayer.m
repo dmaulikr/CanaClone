@@ -16,18 +16,15 @@
 
 - (void)createFirstBuilding
 {
-	Building *firstBuilding = [[Building alloc] initWithBUWidth:15 pixelHeight:200];
+	Building *firstBuilding = [[Building alloc] initWithScrollSpeed:scrollSpeed];
 
 	firstBuilding.position = ccp(firstBuilding.position.x-600,firstBuilding.position.y);
 	[self addChild:firstBuilding];
 }
 
 - (void)createBuilding
-{
-	int pixelHeight = arc4random()%70 + 70;
-	int buildingUnitWidth = arc4random()%5 + 3 + (int)scrollSpeed/80;
-	
-	Building *building = [[Building alloc] initWithBUWidth:buildingUnitWidth pixelHeight:pixelHeight];
+{	
+	Building *building = [[Building alloc] initWithScrollSpeed:scrollSpeed];
 	[self addChild:building];
 }
 
@@ -35,8 +32,11 @@
 - (int)updatePos:(ccTime)delta
 {
 	int lastPlatHeight = -100;
-	gap = arc4random()%((int)scrollSpeed) * .8 + 30;
+	gap = arc4random()%((int)scrollSpeed) * .5 + 40;
 	
+	
+	int smallestGap = 1500;
+
 	for (Building *building in self.children)
     {
 		if ((building.position.x + building.buildingWidth) < -screenSize.width) { //if off the screen
@@ -45,18 +45,17 @@
 		} else {
 			building.position = ccp(building.position.x - delta * scrollSpeed, building.position.y);
 
-			if ( (building.position.x + screenSize.width) < refXPos && //100 is runner position
+			if ( (building.position.x + screenSize.width) < refXPos &&
 				(building.position.x + screenSize.width + building.buildingWidth) >  refXPos ) //if building is under the dude
 					lastPlatHeight = building.platHeight;
 		}
+		
+		if (-(building.position.x + building.buildingWidth) < smallestGap) { //sets smallest gap to smallest gap duh
+			smallestGap = -(building.position.x + building.buildingWidth);
+		}
+		
 	}
 	
-	int smallestGap = 1500;
-	for (Building *building in self.children) {
-			if (-(building.position.x + building.buildingWidth) < smallestGap) { //sets smallest gap to smallest gap duh
-				smallestGap = -(building.position.x + building.buildingWidth);
-			}
-	}
 	if (smallestGap > gap)
 		[self createBuilding];
 

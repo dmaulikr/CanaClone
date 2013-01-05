@@ -14,13 +14,15 @@
 	//float scrollSpeed;
 	CCSpriteBatchNode *wallBatch;
 	CGSize screenSize;
-
+	
+	int BUWidth;
+	int pixelHeight;
+	
 }
 
 @property int buildingWidth;
 @property int platHeight;
 
-
-- (id)initWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight;
+- (id)initWithScrollSpeed:(float)scrollSpeed;
 
 @end

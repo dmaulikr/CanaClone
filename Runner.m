@@ -85,7 +85,7 @@
 		
 		[self setPosition:ccp(self.position.x, minPos)];
 		
-		if (velocity.y < -12) //if downward speed fast enough, roll animation
+		if (velocity.y < -11) //if downward speed fast enough, roll animation
 			[self changeState:kStateRolling];
 		
 		velocity.y = 0;

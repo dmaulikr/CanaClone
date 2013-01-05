@@ -32,7 +32,6 @@
 {
 	pauseLayer = [PauseLayer node];
 	[self addChild:pauseLayer z:200];
-
 }
 
 - (void)initBuildings
@@ -43,7 +42,6 @@
 
 - (void)initBG
 {
-	// BG Layer
 	scrollingLayer = [GameBGLayer node];
 	[self addChild:scrollingLayer z:1 tag:1];
 }
@@ -64,7 +62,6 @@
 	
 	//slowly increases speed
 	int xVel = buildingsLayer.scrollSpeed;
-	
 	if (xVel < 150) acceleration.x = 11;
 	else if (xVel < 375) acceleration.x = 7;
 	else if	(xVel < 600) acceleration.x = 5;
@@ -74,17 +71,15 @@
 	buildingsLayer.scrollSpeed += acceleration.x * deltaTime;
 	if (buildingsLayer.scrollSpeed > 1500) buildingsLayer.scrollSpeed = 1500;
 	
-	int currentHeight = [buildingsLayer updatePos:deltaTime];
 	
+	int currentHeight = [buildingsLayer updatePos:deltaTime];
 	//walldeath
 	if (currentHeight > runner.position.y+1) {
 		buildingsLayer.scrollSpeed = 0;
 		currentHeight = -100;
 	}
 	
-	//if (buildingsLayer.scrollSpeed > 150)
 	[scrollingLayer update:deltaTime withSpeed:buildingsLayer.scrollSpeed];
-
 	[runner updateStateWithDeltaTime:deltaTime currentPlatHeight:currentHeight];
 }
 
@@ -103,7 +98,7 @@
         // enable touches
         self.isTouchEnabled = YES;
 				
-		runnerXPos = 200;
+		runnerXPos = 150;
 		
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"run.mp3"];
 		

@@ -21,7 +21,6 @@ static NSString * ImgWall2Right = @"wall2-right.png";
 static NSString * ImgWall3Right = @"wall3-right.png";
 static NSString * ImgWall4Right = @"wall4-right.png";
 
-
 static NSString * ImgRoof1Left = @"roof1-left.png";
 static NSString * ImgRoof2Left = @"roof2-left.png";
 static NSString * ImgRoof3Left = @"roof3-left.png";
@@ -73,14 +72,12 @@ static NSString * ImgRoof4RightCracked = @"roof4-right-cracked.png";
 static NSString * ImgRoof5RightCracked = @"roof6-right-cracked.png";
 static NSString * ImgRoof6RightCracked = @"roof5-right-cracked.png";
 
-
 static NSString * ImgFloor1Left = @"floor1-left.png";
 static NSString * ImgFloor2Left = @"floor2-left.png";
 static NSString * ImgFloor1Middle = @"floor1-middle.png";
 static NSString * ImgFloor2Middle = @"floor2-middle.png";
 static NSString * ImgFloor1Right = @"floor1-right.png";
 static NSString * ImgFloor2Right = @"floor2-right.png";
-
 
 static NSString * ImgWindow1 = @"window1.png";
 static NSString * ImgWindow2 = @"window2.png";
@@ -93,7 +90,6 @@ static NSArray * middleWalls;
 static NSArray * leftWallsCracked;
 static NSArray * rightWallsCracked;
 static NSArray * middleWallsCracked;
-
 
 static NSArray * leftFloors;
 static NSArray * middleFloors;
@@ -109,9 +105,7 @@ static NSArray * rightRoofsCracked;
 
 static NSArray * windowImages;
 
-
-
-
+//----------------------
 
 static NSString * ImgBillboardTopMiddle = @"billboard_top-middle.png";
 static NSString * ImgBillboardTopLeft = @"billboard_top-left.png";
@@ -129,13 +123,21 @@ static NSString * ImgBillboardBottomRight = @"billboard_bottom-right.png";
 static NSString * ImgBillboardCatwalkMiddle = @"billboard_catwalk-middle.png";
 static NSString * ImgBillboardCatwalkLeft = @"billboard_catwalk-left.png";
 static NSString * ImgBillboardCatwalkRight = @"billboard_catwalk-right.png";
-//static NSString * ImgBillboardPost = @"billboard_post.png";
+static NSString * ImgBillboardPost = @"billboard_post.png";
 static NSString * ImgBillboardPost2 = @"billboard_post2.png";
 static NSString * ImgBillboardDmg1 = @"billboard_dmg1.png";
 static NSString * ImgBillboardDmg2 = @"billboard_dmg2.png";
 static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 
+//-----------------
+static NSString * ImgAntenna5 = @"antenna5.png";
 
+static NSString * ImgCrane1 = @"crane1.png"; //beam
+static NSString * ImgCrane2 = @"crane2.png"; //post
+static NSString * ImgCrane3 = @"crane3.png"; //counterweight
+static NSString * ImgCrane4 = @"crane4.png"; //cabin
+static NSString * ImgCrane5 = @"crane5.png"; //pulley
+//------------
 
 @implementation Building
 
@@ -220,13 +222,73 @@ static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 	ImgWindow4];
 }
 
-- (void)createBillboardWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight
+- (void)createCrane
 {
-	wallBatch.anchorPoint = ccp(0.0f,1.0f);
-
-	int maxRow = pixelHeight/tileSize;
-	int maxCol = BUWidth*2 - 6; //must be even number since some sprites are double sized
+	tileSize = 32;
 	
+	int maxRow = pixelHeight/tileSize + 1;
+	int maxCol = BUWidth*4;
+	
+	buildingWidth = maxCol*tileSize+tileSize;
+	platHeight = pixelHeight;
+
+	int postCol = maxCol/3;
+	//in future, make crane be able to face both ways
+	
+	for (int row = 0; row <= maxRow; row++) {
+		for (int col = 0; col < maxCol; col++) {
+			CCSprite *sprite;
+			if (row == 0) { //for the main post
+				
+				if (col == 0) {
+					//this is for the weight on the crane
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgCrane3];
+					sprite.anchorPoint = ccp(0.0f, 1.0f);
+					[wallBatch addChild:sprite z:20];
+					sprite.position = ccp(screenSize.width + col * tileSize+8, pixelHeight - row * tileSize-8);
+					
+					//this is for antenna
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgAntenna5];
+					sprite.anchorPoint = ccp(0.0f, 0.0f);
+					[wallBatch addChild:sprite z:20];
+					sprite.position = ccp(screenSize.width + col * tileSize-4, pixelHeight - row * tileSize-1);
+				}
+				
+				if (col == postCol) { //for crane controller
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgCrane4];
+					sprite.anchorPoint = ccp(0.0f, 0.75f);
+					[wallBatch addChild:sprite z:20];
+					sprite.position = ccp(screenSize.width + col * tileSize-8, pixelHeight - row * tileSize);
+				}
+				
+				
+					sprite = [CCSprite spriteWithSpriteFrameName:ImgCrane2];
+					sprite.rotation = 90;
+				
+			} else if (row > 0 && col == postCol) //for the support post to ground
+				sprite = [CCSprite spriteWithSpriteFrameName:ImgCrane2];
+			else
+				continue;
+				
+			sprite.anchorPoint = ccp(0.0f, 1.0f);
+			[wallBatch addChild:sprite z:10];
+			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight - row * tileSize);
+		}
+	}
+}
+
+
+
+- (void)createBillboard
+{
+	tileSize = 16;
+
+	int maxCol = BUWidth*2+4; //must be even number since some sprites are double sized
+	if (maxCol<10) maxCol = 16; //set min and max width
+	else if (maxCol > 24) maxCol = 24; 
+	
+	int maxRow = maxCol*2/5; //make height 2/3 the length
+
 	buildingWidth = maxCol*tileSize + tileSize;
 	platHeight = pixelHeight+tileSize;
 
@@ -244,7 +306,7 @@ static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 				else {
 					sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardCatwalkMiddle]; //extra stuff since middle piece is 3px shorter
 					sprite.anchorPoint = ccp(0.0f, 0.0f);
-					[wallBatch addChild:sprite z:20];
+					[wallBatch addChild:sprite z:10];
 					sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight + row * tileSize + 3);
 					continue;
 				}
@@ -291,31 +353,31 @@ static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 			else
 				continue;
 			sprite.anchorPoint = ccp(0.0f, 0.0f);
-			[wallBatch addChild:sprite z:20];
+			[wallBatch addChild:sprite z:10];
 			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight + row * tileSize);
 		}
 	}
 	
 	//draw the post
-	for (int i = 0; i <= maxRow+1; i++) {
+	for (int i = 0; i <= platHeight/tileSize; i++) {
 		CCSprite *sprite;
 		if (i == 0) {
-			sprite = [CCSprite spriteWithSpriteFrameName:@"billboard_post2.png"];
+			sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardPost2];
 		}
 		else if ((i+1)%2 == 0) //this is double height sprite
-			sprite = [CCSprite spriteWithSpriteFrameName:@"billboard_post.png"];
+			sprite = [CCSprite spriteWithSpriteFrameName:ImgBillboardPost];
 		else
 			continue;
 		sprite.anchorPoint = ccp(0.5f,1.0f);
-		[wallBatch addChild:sprite z:10];
+		[wallBatch addChild:sprite z:1];
 		sprite.position = ccp(screenSize.width + maxCol/2 * tileSize, pixelHeight - i * tileSize + 8);
 	}
 }
 
 
-- (void)createBuildingWithBUWidth:(int)BUWidth pixelHeight:(int)pixelHeight
+- (void)createBuilding
 {
-	wallBatch.anchorPoint = ccp(0.0f,0.0f);
+	tileSize = 16;
 
 	int maxRow = pixelHeight/tileSize + 1;
 	int maxCol = BUWidth*4 +2; //windows + edges
@@ -360,36 +422,45 @@ static NSString * ImgBillboardDmg3 = @"billboard_dmg3.png";
 				}
 			}
 			sprite.anchorPoint = ccp(0.0f, 1.0f);
-			[wallBatch addChild:sprite z:20];
+			[wallBatch addChild:sprite z:10];
 			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight - row * tileSize);
 		}
 	}
 }
 
-- (id)initWithBUWidth:(int)BUWidth
-		  pixelHeight:(int)pixelHeight
+
+- (id)initWithScrollSpeed:(float)scrollSpeed
 {
 	if (self = [super init]) {
-		
 		[self initSpriteLists];
 		screenSize = [[CCDirector sharedDirector] winSize];
-		tileSize = 16;
-		//super.scrollSpeed = 1.0f;
 		
 		[[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"Object_Atlas.plist"];
 		wallBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:750];
-		
 		[self addChild:wallBatch];
+		wallBatch.anchorPoint = ccp(0.0f,0.0f);
 		
+		BUWidth = arc4random()%5 + 2 + (int)scrollSpeed/80;
+		pixelHeight = arc4random()%70 + 70;
 		
 		int buildingType = arc4random();
-		if (buildingType > 0.5)
-				[self createBuildingWithBUWidth:BUWidth pixelHeight:pixelHeight];
-		else if (buildingType < 0.5)
-				[self createBillboardWithBUWidth:BUWidth pixelHeight:pixelHeight];
+		
+		if (scrollSpeed == 150.0f) { //for the first building
+			pixelHeight = 200;
+			BUWidth = 15;
+			buildingType = 1;
+		}
+
+		if (buildingType > 0.25)
+			//[self createBuilding];
+			[self createCrane];
+		else if (buildingType < 0.25)
+			[self createBillboard];
 		
 	}
 	return self;
+
 }
+
 
 @end
