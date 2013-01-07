@@ -19,11 +19,17 @@ static NSString * ImgDishes = @"dishes.png";
 static NSString * ImgAC = @"ac.png";
 static NSString * ImgSkyLight = @"skylight.png";
 static NSString * ImgReservoir = @"reservoir.png";
+static NSString *ImgSlope = @"slope.png";
+static NSString *ImgSlope20 = @"slope20.png";
+static NSString *ImgBlock = @"block.png";
+static NSString *ImgBlock20 = @"block20.png";
 static NSString * ImgPipe1 = @"pipe1.png";
 static NSString * ImgPipe2 = @"pipe2.png";
 static NSString * ImgEscape = @"escape.png";
 static NSString * ImgAccess = @"access.png";
 static NSString * ImgFence = @"fence.png";
+
+static NSArray *antenna;
 
 @implementation BuildingProps
 
@@ -543,6 +549,121 @@ static NSString * ImgFence = @"fence.png";
 		[backgroundRenderLayer add:fence];
 	}
 }*/
+
+- (void)initSpriteLists
+{
+	antenna = @[ImgAntenna1,
+	ImgAntenna2,
+	ImgAntenna3,
+	ImgAntenna4,
+	ImgAntenna5,
+	ImgAntenna6];
+}
+
+- (void)createProps
+{
+	//create antenna
+	int tileSize = 40;
+	int maxCol = (areaWidth-140)/tileSize-1;
+	CCSprite *antennaSprite;
+
+	for (int col = 0; col < maxCol; col++) {
+		int randAntenna = arc4random()%8;
+		if (randAntenna > 6) { //if not in the list
+			continue;
+		}
+		else {
+			antennaSprite = [CCSprite spriteWithSpriteFrameName:antenna[randAntenna]];
+			antennaSprite.anchorPoint = ccp(0.0f,0.0f);
+			antennaSprite.position = ccp(screenSize.width + 80 + col*tileSize, areaHeight);
+			[propBatch addChild:antennaSprite];
+		}
+	}
+}
+
+- (void)createSlopePlat
+{
+	int slopeType = arc4random()%5;
+		
+	switch (slopeType) {
+		case 0:
+		{
+			int tileSize = 16;
+			int maxCol = (areaWidth-100)/tileSize-2;
+			for (int col = 0; col < maxCol; col++) {
+				CCSprite *slopePlatSprite = [CCSprite spriteWithSpriteFrameName:ImgSlope];
+				slopePlatSprite.anchorPoint = ccp(0.0f,0.0f);
+				slopePlatSprite.position = ccp(screenSize.width + 50 + col*tileSize, areaHeight);
+				[propBatch addChild:slopePlatSprite];
+			}
+			areaHeight += tileSize;
+			break;
+		}
+		case 1:
+		{
+			int tileSize = 16;
+			int maxCol = (areaWidth-100)/tileSize;
+			for (int col = 0; col < maxCol; col++) {
+				CCSprite *slopePlatSprite = [CCSprite spriteWithSpriteFrameName:ImgBlock];
+				slopePlatSprite.anchorPoint = ccp(0.0f,0.0f);
+				slopePlatSprite.position = ccp(screenSize.width + 50 + col*tileSize, areaHeight);
+				[propBatch addChild:slopePlatSprite];
+			}
+			areaHeight += tileSize;
+			break;
+		}
+		case 2:
+		{
+			int tileSize = 20;
+			int maxCol = (areaWidth-100)/tileSize-2;
+			for (int col = 0; col < maxCol; col++) {
+				CCSprite *slopePlatSprite = [CCSprite spriteWithSpriteFrameName:ImgSlope20];
+				slopePlatSprite.anchorPoint = ccp(0.0f,0.0f);
+				slopePlatSprite.position = ccp(screenSize.width + 50 + col*tileSize, areaHeight);
+				[propBatch addChild:slopePlatSprite];
+			}
+			areaHeight += tileSize;
+			break;
+		}
+		case 3:
+		{
+			int tileSize = 20;
+			int maxCol = (areaWidth-100)/tileSize;
+			for (int col = 0; col < maxCol; col++) {
+				CCSprite *slopePlatSprite = [CCSprite spriteWithSpriteFrameName:ImgBlock20];
+				slopePlatSprite.anchorPoint = ccp(0.0f,0.0f);
+				slopePlatSprite.position = ccp(screenSize.width + 50 + col*tileSize, areaHeight);
+				[propBatch addChild:slopePlatSprite];
+			}
+			areaHeight += tileSize;
+			break;
+		}
+		default:
+			break;
+	}
+}
+
+- (id)initWithWidth:(int)width height:(int)height
+{
+	if (self = [super init]) {
+		screenSize = [[CCDirector sharedDirector] winSize];
+
+		propBatch = [CCSpriteBatchNode batchNodeWithFile:@"Object_Atlas.png" capacity:100];
+		[self addChild:propBatch];
+		propBatch.anchorPoint = ccp(0.0f,0.0f);
+
+		areaWidth = width;
+		areaHeight = height;
+
+		[self initSpriteLists];
+		
+		[self createSlopePlat];
+		[self createProps];
+		
+	}
+	return  self;
+}
+
 
 
 @end

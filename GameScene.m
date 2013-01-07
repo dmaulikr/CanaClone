@@ -12,12 +12,10 @@
 
 - (id)init
 {
-	if (self = [super init]) {		
+	if (self = [super init]) {
 		// Initialize the Control Layer
         controlLayer = [GameControlLayer node];
         [self addChild:controlLayer z:2 tag:2];
-		
-
 	}
 	return self;
 }

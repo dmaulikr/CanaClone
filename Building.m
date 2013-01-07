@@ -426,6 +426,11 @@ static NSString * ImgCrane5 = @"crane5.png"; //pulley
 			sprite.position = ccp(screenSize.width + col * tileSize, pixelHeight - row * tileSize);
 		}
 	}
+	
+	//add props here
+	BuildingProps *buildingProps = [[BuildingProps alloc] initWithWidth:buildingWidth height:platHeight];
+	[self addChild:buildingProps];
+
 }
 
 
@@ -443,7 +448,7 @@ static NSString * ImgCrane5 = @"crane5.png"; //pulley
 		BUWidth = arc4random()%5 + 2 + (int)scrollSpeed/80;
 		pixelHeight = arc4random()%70 + 70;
 		
-		int buildingType = arc4random();
+		float buildingType = arc4random();
 		
 		if (scrollSpeed == 150.0f) { //for the first building
 			pixelHeight = 200;
@@ -452,10 +457,16 @@ static NSString * ImgCrane5 = @"crane5.png"; //pulley
 		}
 
 		if (buildingType > 0.25)
-			//[self createBuilding];
-			[self createCrane];
-		else if (buildingType < 0.25)
-			[self createBillboard];
+			[self createBuilding];
+		else if (buildingType < 0.25) {
+			if (buildingType < 0.15) 
+				[self createBillboard];
+			else
+				[self createCrane];
+		}
+		else
+			CCLOG(@"dude problem with the building type");
+
 		
 	}
 	return self;

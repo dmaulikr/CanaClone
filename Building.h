@@ -7,6 +7,7 @@
 //
 
 #import "cocos2d.h"
+#import "BuildingProps.h"
 
 @interface Building : CCLayer
 {

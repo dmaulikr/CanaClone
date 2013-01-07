@@ -102,7 +102,6 @@
 		
 		[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"run.mp3"];
 		
-		
 		[self initBG];
 		[self initPauseLayer];
 		[self initRunner];

@@ -7,7 +7,18 @@
 //
 
 #import "CCLayer.h"
+#import "cocos2d.h"
 
 @interface BuildingProps : CCLayer
+{
+	CCSpriteBatchNode *propBatch;
+	CGSize screenSize;
+	
+	int areaWidth;
+	int areaHeight;
+
+}
+
+- (id)initWithWidth:(int)width height:(int)height;
 
 @end
