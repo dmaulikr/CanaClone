@@ -569,7 +569,7 @@ static NSArray *antenna;
 
 	for (int col = 0; col < maxCol; col++) {
 		int randAntenna = arc4random()%8;
-		if (randAntenna > 6) { //if not in the list
+		if (randAntenna > 5) { //if not in the list
 			continue;
 		}
 		else {

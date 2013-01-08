@@ -62,7 +62,7 @@
 	
 	//slowly increases speed
 	int xVel = buildingsLayer.scrollSpeed;
-	if (xVel < 150) acceleration.x = 11;
+	if (xVel < 140) acceleration.x = 60;
 	else if (xVel < 375) acceleration.x = 7;
 	else if	(xVel < 600) acceleration.x = 5;
 	else if (xVel < 900) acceleration.x = 3;
