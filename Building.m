@@ -406,7 +406,7 @@ static NSString * ImgCrane5 = @"crane5.png"; //pulley
 			else if (row%2 == 0 && col > 0 && col < maxCol - 1) { //if in an even row, make it a window
 				if ((col-1)%4 == 0) { //window tex are 4 tiles long
 					sprite = [CCSprite spriteWithSpriteFrameName:windowImages[window]];
-				}
+				} 
 				else
 					continue;
 			}
