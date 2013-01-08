@@ -7,12 +7,7 @@
 //
 
 #import "CCScene.h"
-#import "cocos2d.h"
-#import "GameControlLayer.h"
 
 @interface GameScene : CCScene
-{
-	GameControlLayer *controlLayer;
-}
 
 @end

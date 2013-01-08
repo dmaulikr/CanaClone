@@ -8,19 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
-#import "GameManager.h"
-
 
 @interface AppController : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 {
 	UIWindow *window_;
 	UINavigationController *navController_;
 	
-	CCDirectorIOS	*__unsafe_unretained director_;							// weak ref
+	CCDirectorIOS	*director_;							// weak ref
 }
 
-@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, retain) UIWindow *window;
 @property (readonly) UINavigationController *navController;
-@property (unsafe_unretained, readonly) CCDirectorIOS *director;
+@property (readonly) CCDirectorIOS *director;
 
 @end

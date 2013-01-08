@@ -7,14 +7,7 @@
 //
 
 #import "CCLayer.h"
-#import "cocos2d.h"
-#import "Constants.h"
-#import "GameManager.h"
-#import "SimpleAudioEngine.h"
 
 @interface MainMenuLayer : CCLayer
-{
-	CCMenu *mainMenu;
-}
 
 @end

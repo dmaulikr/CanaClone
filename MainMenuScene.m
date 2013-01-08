@@ -10,13 +10,4 @@
 
 @implementation MainMenuScene
 
-- (id)init
-{
-	if (self = [super init]) {
-		mainMenuLayer = [MainMenuLayer node];
-		[self addChild:mainMenuLayer z:1];
-	}
-	return self;
-}
-
 @end
