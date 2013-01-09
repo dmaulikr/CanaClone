@@ -73,12 +73,6 @@
 	}
 
 	[self addYPosition:velocity.y * deltaTime * 50];
-
-	if (velocity.y < 0) { //falling if vel.y < 0
-		if ([self numberOfRunningActions] == 0)
-			[self changeState:kStateFalling];
-	}
-	
 	
 	if (self.position.y < minPos) { //if below platform level
 		[self stopAllActions];
