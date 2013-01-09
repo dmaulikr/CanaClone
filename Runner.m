@@ -49,7 +49,6 @@
 
 #pragma mark -
 -(void)updateStateWithDeltaTime:(ccTime)deltaTime currentPlatHeight:(int)platHeight
-		   //andListOfGameObjects:(CCArray*)listOfGameObjects
 {
 	minPos = platHeight;
 	
@@ -59,7 +58,6 @@
 		if (isTouched) {
 			[self changeState:kStateJumping];
 			if (velocity.y == 0) velocity.y = 4.5f; //initial jump speed
-			//CCLOG(@"start jump");
 		}
 	}
 	if (velocity.y > 3.2 && isTouched) { //if in process of jumping but below max speed
@@ -74,6 +72,7 @@
 
 	[self addYPosition:velocity.y * deltaTime * 50];
 	
+	
 	if (self.position.y < minPos) { //if below platform level
 		[self stopAllActions];
 		
@@ -81,7 +80,6 @@
 		
 		if (velocity.y < -11) //if downward speed fast enough, roll animation
 			[self changeState:kStateRolling];
-		
 		velocity.y = 0;
 	}
 		
