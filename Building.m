@@ -385,9 +385,9 @@ static NSString * ImgCrane5 = @"crane5.png"; //pulley
 	buildingWidth = maxCol*tileSize+tileSize;
 	platHeight = pixelHeight;	
 	
-	int roof = arc4random()%6;
-	int window = arc4random()%4;
-	int wall = arc4random()%4;
+	int roof = arc4random_uniform(6);
+	int window = arc4random_uniform(4);
+	int wall = arc4random_uniform(4);
 	
 	for (int row = 0; row <= maxRow; row++) {
 		for (int col = 0; col < maxCol; col++) {
@@ -445,8 +445,8 @@ static NSString * ImgCrane5 = @"crane5.png"; //pulley
 		[self addChild:wallBatch];
 		wallBatch.anchorPoint = ccp(0.0f,0.0f);
 		
-		BUWidth = arc4random()%5 + 2 + (int)scrollSpeed/80;
-		pixelHeight = arc4random()%70 + 70;
+		BUWidth = arc4random_uniform(5) + 2 + (int)scrollSpeed/80;
+		pixelHeight = arc4random_uniform(70) + 70;
 		
 		float buildingType = arc4random();
 		

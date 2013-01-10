@@ -568,7 +568,7 @@ static NSArray *antenna;
 	CCSprite *antennaSprite;
 
 	for (int col = 0; col < maxCol; col++) {
-		int randAntenna = arc4random()%8;
+		int randAntenna = arc4random_uniform(8);
 		if (randAntenna > 5) { //if not in the list
 			continue;
 		}
@@ -583,7 +583,7 @@ static NSArray *antenna;
 
 - (void)createSlopePlat
 {
-	int slopeType = arc4random()%5;
+	int slopeType = arc4random_uniform(5);
 		
 	switch (slopeType) {
 		case 0:

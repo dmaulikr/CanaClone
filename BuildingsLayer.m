@@ -32,7 +32,7 @@
 - (int)updatePos:(ccTime)delta
 {
 	int lastPlatHeight = -100;
-	gap = arc4random()%((int)scrollSpeed) * .5 + 40;
+	gap = arc4random_uniform((int)scrollSpeed) * .5 + 40;
 	
 	
 	int smallestGap = 1500;
